@@ -12,15 +12,17 @@
     "build": "NODE_ENV=production webpack --config webpack.config.cjs",
     "prettify": "prettier -w --log-level=silent src/",
     "lint": "eslint --fix ./src/",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack serve --port 3000",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm audit && pnpm build"
   },
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.6",
+    "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "i18next": "^25.2.1",
     "i18next-browser-languagedetector": "^8.2.0",

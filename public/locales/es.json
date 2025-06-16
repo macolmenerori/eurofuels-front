@@ -1,0 +1,12 @@
+{
+  "mainPage": {
+    "title": "Eurofuels",
+    "description": "Los precios se actualizan cada semana, impuestos incluídos."
+  },
+  "components": {
+    "navbar": {
+      "changeLanguage": "Cambiar idioma",
+      "changeTheme": "Cambiar tema claro/oscuro"
+    }
+  }
+}

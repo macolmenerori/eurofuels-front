@@ -1,0 +1,12 @@
+{
+  "mainPage": {
+    "title": "Eurofuels",
+    "description": "Prices are updated every week. Taxes included."
+  },
+  "components": {
+    "navbar": {
+      "changeLanguage": "Change language",
+      "changeTheme": "Change light/dark theme"
+    }
+  }
+}
