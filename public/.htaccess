@@ -1,0 +1,12 @@
+# Apache configuration file
+# This config file changes the default behavior of the server to ALWAYS serve the index.html file
+# This is necessary because the app is a single page application and the server needs to serve the index.html file for every request
+# This is the only way to make the app work with the browser's back and forward buttons or to pass subroutes to the app
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
