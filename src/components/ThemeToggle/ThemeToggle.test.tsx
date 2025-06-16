@@ -39,7 +39,7 @@ describe('ThemeToggle', () => {
 
     expect(screen.getByTestId('dark-icon')).toBeInTheDocument();
     expect(screen.queryByTestId('light-icon')).not.toBeInTheDocument();
-    expect(mockT).toHaveBeenCalledWith('navbar.changeTheme');
+    expect(mockT).toHaveBeenCalledWith('components.navbar.changeTheme');
   });
 
   test('renders dark mode with light icon', () => {

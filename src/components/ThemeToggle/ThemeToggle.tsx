@@ -11,7 +11,7 @@ export function ThemeToggle() {
   const { t } = useTranslation();
 
   return (
-    <Tooltip title={t('navbar.changeTheme')} data-testid="theme-toggle">
+    <Tooltip title={t('components.navbar.changeTheme')} data-testid="theme-toggle">
       <IconButton onClick={toggleTheme} color="inherit">
         {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
       </IconButton>

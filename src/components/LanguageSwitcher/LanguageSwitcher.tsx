@@ -16,7 +16,7 @@ export function LanguageSwitcher() {
 
   return (
     <FormControl size="small" sx={{ minWidth: 60 }} data-testid="language-switcher">
-      <Tooltip title={t('navbar.changeLanguage')} placement="left" arrow>
+      <Tooltip title={t('components.navbar.changeLanguage')} placement="left" arrow>
         <Select
           value={i18n.language}
           onChange={handleLanguageChange}

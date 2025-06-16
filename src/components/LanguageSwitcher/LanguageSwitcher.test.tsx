@@ -47,6 +47,6 @@ describe('LanguageSwitcher', () => {
   it('displays tooltip with correct translation', () => {
     render(<LanguageSwitcher />);
 
-    expect(tMock).toHaveBeenCalledWith('navbar.changeLanguage');
+    expect(tMock).toHaveBeenCalledWith('components.navbar.changeLanguage');
   });
 });
