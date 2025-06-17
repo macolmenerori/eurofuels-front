@@ -34,6 +34,46 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <!-- DATADOG -->
+    <script>
+      (function (h, o, u, n, d) {
+        h = h[d] = h[d] || {
+          q: [],
+          onReady: function (c) {
+            h.q.push(c);
+          }
+        };
+        d = o.createElement(u);
+        d.async = 1;
+        d.src = n;
+        n = o.getElementsByTagName(u)[0];
+        n.parentNode.insertBefore(d, n);
+      })(
+        window,
+        document,
+        'script',
+        'https://www.datadoghq-browser-agent.com/eu1/v6/datadog-rum.js',
+        'DD_RUM'
+      );
+      window.DD_RUM.onReady(function () {
+        window.DD_RUM.init({
+          clientToken: 'pubd5a8d9f520587e3d228363b99a7ef577',
+          applicationId: '0b8d8e6b-8933-4859-9306-247f0895bff2',
+          // `site` refers to the Datadog site parameter of your organization
+          // see https://docs.datadoghq.com/getting_started/site/
+          site: 'datadoghq.eu',
+          service: 'eurofuels-front',
+          env: 'prod',
+          // Specify a version number to identify the deployed version of your application in Datadog
+          version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          trackUserInteractions: true,
+          trackResources: true,
+          trackLongTasks: true,
+          defaultPrivacyLevel: 'allow'
+        });
+      });
+    </script>
     <title>Eurofuels</title>
   </head>
   <body>
