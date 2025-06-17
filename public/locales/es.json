@@ -16,6 +16,9 @@
       "gasoline": "Gasolina"
     }
   },
+  "footer": {
+    "gitHubProject": "Echa un ojo a este proecto en GitHub"
+  },
   "mainPage": {
     "description": "Los precios se actualizan cada semana, impuestos incluídos.",
     "title": "Eurofuels"

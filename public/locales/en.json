@@ -16,6 +16,9 @@
       "gasoline": "Gasoline (€/1000L)"
     }
   },
+  "footer": {
+    "gitHubProject": "Check out this project on GitHub"
+  },
   "mainPage": {
     "description": "Prices are updated every week. Taxes included.",
     "title": "Eurofuels"
