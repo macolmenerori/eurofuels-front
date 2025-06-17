@@ -1,12 +1,23 @@
 {
-  "mainPage": {
-    "title": "Eurofuels",
-    "description": "Los precios se actualizan cada semana, impuestos incluídos."
-  },
   "components": {
+    "errorLoadingCard": {
+      "message": "POr favor vuelve en un par de minutos o prueba a recargar.",
+      "reload": "Recargar",
+      "title": "Error al cargar los precios de los combustibles"
+    },
     "navbar": {
       "changeLanguage": "Cambiar idioma",
       "changeTheme": "Cambiar tema claro/oscuro"
+    },
+    "pricesTableComponent": {
+      "aria": "tabla de precios de combustibles",
+      "country": "País",
+      "diesel": "Diésel",
+      "gasoline": "Gasolina"
     }
+  },
+  "mainPage": {
+    "description": "Los precios se actualizan cada semana, impuestos incluídos.",
+    "title": "Eurofuels"
   }
 }

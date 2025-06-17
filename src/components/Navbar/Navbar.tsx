@@ -2,7 +2,7 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import { AppBar, Box, Stack, Typography } from '@mui/material';
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
-import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import { ThemeToggle } from '@/components/ThemeToggle/ThemeToggle';
 
 export function Navbar() {
   return (
