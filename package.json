@@ -61,7 +61,7 @@
     "jest-environment-jsdom": "^30.0.4",
     "jest-fixed-jsdom": "^0.0.9",
     "mini-css-extract-plugin": "^2.9.2",
-    "msw": "^2.10.2",
+    "msw": "^2.10.3",
     "prettier": "^3.5.3",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
