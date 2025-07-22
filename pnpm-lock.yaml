@@ -6,6 +6,7 @@ settings:
 
 overrides:
   on-headers: ^1.1.0
+  form-data: ^4.0.4
 
 importers:
 
@@ -3392,6 +3393,8 @@ packages:
 
   on-headers@1.1.0:
     resolution: {integrity: sha512-737ZY3yNnXy37FHkQxPzt4UZ2UWPWiCZWLvFZ4fu5cueciegX0zGPnrlY6bwRg4FdQOe9YU8MkmJwGhoMybl8A==}
+  on-headers@1.1.0:
+    resolution: {integrity: sha512-737ZY3yNnXy37FHkQxPzt4UZ2UWPWiCZWLvFZ4fu5cueciegX0zGPnrlY6bwRg4FdQOe9YU8MkmJwGhoMybl8A==}
     engines: {node: '>= 0.8'}
 
   once@1.4.0:
@@ -6512,6 +6515,7 @@ snapshots:
       debug: 2.6.9
       negotiator: 0.6.4
       on-headers: 1.1.0
+      on-headers: 1.1.0
       safe-buffer: 5.2.1
       vary: 1.1.2
     transitivePeerDependencies:
@@ -8518,6 +8522,7 @@ snapshots:
     dependencies:
       ee-first: 1.1.1
 
+  on-headers@1.1.0: {}
   on-headers@1.1.0: {}
 
   once@1.4.0:
