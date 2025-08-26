@@ -60,7 +60,7 @@
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "jest-fixed-jsdom": "^0.0.9",
-    "mini-css-extract-plugin": "^2.9.3",
+    "mini-css-extract-plugin": "^2.9.4",
     "msw": "^2.10.4",
     "prettier": "^3.6.2",
     "style-loader": "^4.0.0",
