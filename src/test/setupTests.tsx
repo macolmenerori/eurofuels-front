@@ -66,5 +66,6 @@ function renderWithProviders(
 }
 
 export * from '@testing-library/react';
+export { default as userEvent } from '@testing-library/user-event';
 export { renderWithProviders as render };
 export { i18n }; // Export i18n instance for direct manipulation in tests if needed

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 
-import { fireEvent, render, screen } from '@/test/setupTests';
+import { render, screen, userEvent } from '@/test/setupTests';
 
 // Mock the react-i18next module
 jest.mock('react-i18next', () => ({
@@ -32,14 +32,15 @@ describe('LanguageSwitcher', () => {
     expect(selectElement).toHaveTextContent('EN');
   });
 
-  it('changes language when a new option is selected', () => {
+  it('changes language when a new option is selected', async () => {
+    const user = userEvent.setup();
     render(<LanguageSwitcher />);
 
     const selectElement = screen.getByRole('combobox');
-    fireEvent.mouseDown(selectElement);
+    await user.click(selectElement);
 
     const esOption = screen.getByText('ES');
-    fireEvent.click(esOption);
+    await user.click(esOption);
 
     expect(changeLanguageMock).toHaveBeenCalledWith('es');
   });

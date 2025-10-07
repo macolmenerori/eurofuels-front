@@ -98,7 +98,10 @@ export default tseslint.config(
   },
   // Apply testing-library rules
   {
-    rules: testingLibraryPlugin.configs.react.rules
+    rules: testingLibraryPlugin.configs.react.rules,
+    settings: {
+      'testing-library/utils-module': '@/test/setupTests'
+    }
   },
   // Apply prettier config
   prettierConfig,
