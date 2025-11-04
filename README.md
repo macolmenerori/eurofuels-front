@@ -14,7 +14,7 @@ For retrieving the data, an AWS Lambda function will be used, which will store t
 
 ### Requirements
 
-- Node JS `>=22.11.0`
+- Node JS `>=24.11.0`
 - [PNPM](https://pnpm.io/installation) `>=10.12.1`
 
 ### Run

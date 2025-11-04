@@ -26,7 +26,7 @@ pnpm verify              # Run all checks: lint, prettify, types, test, audit, b
 
 ### Requirements
 
-- Node.js: `>=22.11.0`
+- Node.js: `>=24.11.0`
 - Package manager: `pnpm>=10.12.1`
 
 ## Architecture
