@@ -1,6 +1,6 @@
 # Stage 1: build project
-FROM node:22-alpine as builder
-LABEL app="eurofuels-front" stack.binary="node" stack.version="22-alpine"
+FROM node:24-alpine as builder
+LABEL app="eurofuels-front" stack.binary="node" stack.version="24-alpine"
 
 RUN corepack enable
 
