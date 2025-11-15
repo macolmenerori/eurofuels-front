@@ -30,7 +30,7 @@ export const handlers = [
   // Mock the fuel prices API
   http.get('https://eurofuels-bucket.s3.eu-west-1.amazonaws.com/eurofuels_data.json', () => {
     // Return the mock data as JSON string (since your component calls JSON.parse)
-    return HttpResponse.json(JSON.stringify(mockFuelPricesData));
+    return HttpResponse.json(mockFuelPricesData);
   }),
 
   // Handler for error scenarios

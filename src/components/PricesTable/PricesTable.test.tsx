@@ -117,7 +117,7 @@ describe('PricesTable', () => {
     // Override the default handler to return empty array
     server.use(
       http.get('https://eurofuels-bucket.s3.eu-west-1.amazonaws.com/eurofuels_data.json', () => {
-        return HttpResponse.json(JSON.stringify([]));
+        return HttpResponse.json([]);
       })
     );
 
@@ -144,9 +144,7 @@ describe('PricesTable', () => {
         'https://eurofuels-bucket.s3.eu-west-1.amazonaws.com/eurofuels_data.json',
         async () => {
           await new Promise((resolve) => setTimeout(resolve, 100));
-          return HttpResponse.json(
-            JSON.stringify([{ country: 'Test Country', gasoline: '1.23', diesel: '1.45' }])
-          );
+          return HttpResponse.json([{ country: 'Test Country', gasoline: '1.23', diesel: '1.45' }]);
         }
       )
     );

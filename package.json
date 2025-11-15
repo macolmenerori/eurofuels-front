@@ -18,7 +18,7 @@
     "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm audit --prod --prod && pnpm build",
     "gitleaks": "sh scripts/gitleaks.sh"
   },
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.22.0",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
