@@ -29,7 +29,7 @@ export default function PricesTable() {
           showReload={true}
         />
       ) : null}
-      {data ? <PricesTableComponent tableData={JSON.parse(data) as FuelPricesData[]} /> : null}
+      {data ? <PricesTableComponent tableData={data as FuelPricesData[]} /> : null}
     </>
   );
 }
