@@ -29,6 +29,6 @@ updates:
           - '@types/jest'
       build-tools:
         patterns:
-          - 'webpack*'
-          - '@types/webpack*'
+          - 'vite*'
+          - '@vitejs*'
           - 'typescript'
