@@ -14,8 +14,10 @@ Data source: [EU Weekly Oil Bulletin](https://energy.ec.europa.eu/data-and-analy
 
 ```bash
 pnpm i                   # Install dependencies
-pnpm start               # Start dev server on port 3000
-pnpm build               # Production build
+pnpm start               # Start Vite dev server on port 3000
+pnpm dev                 # Alias for pnpm start (Vite dev server)
+pnpm build               # TypeScript check + Vite production build
+pnpm preview             # Preview production build locally on port 3000
 pnpm test                # Run all Jest tests
 pnpm test <filename>     # Run specific test file
 pnpm types               # Type-check without emitting files
@@ -33,7 +35,7 @@ pnpm verify              # Run all checks: lint, prettify, types, test, audit, b
 
 ### Tech Stack
 
-- **Build System**: Webpack 5 (via `webpack.config.cjs`)
+- **Build System**: Vite 6 with React plugin and TypeScript support
 - **Framework**: React 19 with TypeScript
 - **UI Library**: Material-UI v7 (with Emotion for styling)
 - **Data Fetching**: SWR for caching and revalidation
@@ -86,7 +88,7 @@ src/
 **4. Import Paths**
 
 - Aliased paths configured: `@/*` maps to `src/*`
-- Works in both TypeScript (tsconfig.json) and Webpack (webpack.config.cjs)
+- Works in both TypeScript (tsconfig.json) and Vite (vite.config.ts via vite-tsconfig-paths plugin)
 - Example: `import { MainLayout } from '@/ui/MainLayout/MainLayout'`
 
 **5. Component Organization**
@@ -115,14 +117,18 @@ src/
   - `no-console`: warn
   - `react/prop-types`: off (TypeScript handles this)
 
-### Build Configuration (webpack.config.cjs)
+### Build Configuration (vite.config.ts)
 
 - Production builds use content hashing for cache busting
-- CSS extraction in production (inline styles in dev)
-- Console logs removed in production builds
-- Dev server on port 3000 with HMR enabled
-- Static assets (locales, images, fonts) copied to build directory
-- Path alias `@` configured for imports
+- CSS extraction in production (Vite handles automatically)
+- Console logs removed in production builds via terser
+- Dev server on port 3000 with fast HMR
+- Preview server on port 3000 for testing production builds
+- Static assets served from `public/` directory (Vite automatic handling)
+- Build output directory: `dist/` (Vite default)
+- Path alias `@` configured via vite-tsconfig-paths plugin
+- Manual code splitting: react-vendor and mui-vendor chunks
+- PostCSS with autoprefixer and postcss-preset-env for CSS processing
 
 ## Key Implementation Details
 
