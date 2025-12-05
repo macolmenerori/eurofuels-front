@@ -17,7 +17,7 @@
     "lint": "eslint --fix ./src/",
     "test": "jest",
     "types": "tsc --noEmit",
-    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm audit --prod --prod && pnpm build",
+    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm audit --prod && pnpm build",
     "gitleaks": "sh scripts/gitleaks.sh"
   },
   "packageManager": "pnpm@10.24.0",
