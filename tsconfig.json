@@ -26,5 +26,5 @@
     "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom", "vite/client"]
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "scripts/**/*.ts"]
 }

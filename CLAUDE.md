@@ -14,10 +14,9 @@ Data source: [EU Weekly Oil Bulletin](https://energy.ec.europa.eu/data-and-analy
 
 ```bash
 pnpm i                   # Install dependencies
-pnpm start               # Start Vite dev server on port 3000
-pnpm dev                 # Alias for pnpm start (Vite dev server)
-pnpm build               # TypeScript check + Vite production build
-pnpm preview             # Preview production build locally on port 3000
+pnpm dev                 # Alias for pnpm start (SSG dev server)
+pnpm build               # Generate sitemap + TypeScript check + SSG build
+pnpm preview             # Preview SSG production build locally on port 3000
 pnpm test                # Run all Jest tests
 pnpm test <filename>     # Run specific test file
 pnpm types               # Type-check without emitting files
@@ -35,11 +34,13 @@ pnpm verify              # Run all checks: lint, prettify, types, test, audit, b
 
 ### Tech Stack
 
-- **Build System**: Vite 6 with React plugin and TypeScript support
+- **Build System**: Vite 7 with React plugin and TypeScript support
 - **Framework**: React 19 with TypeScript
+- **Static Site Generation**: vite-react-ssg for pre-rendering and SEO
 - **UI Library**: Material-UI v7 (with Emotion for styling)
 - **Data Fetching**: SWR for caching and revalidation
-- **Internationalization**: react-i18next with browser language detection
+- **Internationalization**: react-i18next with browser language detection (SSR-compatible)
+- **SEO**: react-helmet-async for meta tags and structured data
 - **Testing**: Jest + Testing Library + MSW (Mock Service Worker)
 
 ### Project Structure
@@ -48,19 +49,26 @@ pnpm verify              # Run all checks: lint, prettify, types, test, audit, b
 src/
 ├── components/          # React components (each in own folder with tests)
 │   ├── PricesTable/    # Main data display component
+│   ├── SEOHead/        # SEO meta tags and structured data
 │   ├── Navbar/
 │   ├── LanguageSwitcher/
 │   ├── ThemeToggle/
 │   └── ...
 ├── ui/
-│   ├── MainLayout/     # Main layout wrapper
+│   ├── MainLayout/     # Main layout wrapper (includes SEO components)
 │   └── theme/          # MUI theme configuration and ThemeContext
 ├── test/
 │   ├── mocks/          # MSW handlers for API mocking
 │   └── setupTests.tsx  # Jest setup file
 ├── types/              # TypeScript type definitions
-├── i18n.ts            # i18next configuration
-└── index.tsx          # Application entry point
+├── i18n.ts            # i18next configuration (with SSR guards)
+└── index.tsx          # SSG entry point (ViteReactSSG)
+scripts/
+└── generate-sitemap.ts # Automatic sitemap generation for SEO
+public/
+├── locales/            # Translation files
+├── robots.txt          # Search engine crawler directives
+└── sitemap.xml         # Auto-generated sitemap (via build script)
 ```
 
 ### Key Architectural Patterns
@@ -75,23 +83,36 @@ src/
 **2. Theme Management (ui/theme/)**
 
 - Custom ThemeContext wraps MUI ThemeProvider
-- Persists theme preference to localStorage
+- Persists theme preference to localStorage (with SSR guards)
 - Responds to system theme changes when no explicit preference set
+- Defaults to 'light' theme during SSG, switches after client hydration
 - Access via `useTheme()` hook
 
-**3. Internationalization**
+**3. Static Site Generation & SEO**
+
+- Entry point uses `ViteReactSSG` for static pre-rendering
+- SSR-compatible with guards for browser-only APIs (`window`, `localStorage`)
+- SEO components in `src/components/SEOHead/`:
+  - `SEOHead.tsx`: Meta tags, Open Graph, Twitter Cards, canonical URLs
+  - `JsonLd.tsx`: Structured data (WebApplication schema)
+- Automatic sitemap generation before each build (`scripts/generate-sitemap.ts`)
+- Pre-rendered HTML improves SEO and perceived performance
+
+**4. Internationalization**
 
 - Translation files: `public/locales/{en,es}.json`
 - Configured in `src/i18n.ts` with automatic language detection
+- SSR guards prevent browser-only `LanguageDetector` from running during build
+- Defaults to English during SSG, switches to browser preference after hydration
 - Access translations via `useTranslation()` hook from react-i18next
 
-**4. Import Paths**
+**5. Import Paths**
 
 - Aliased paths configured: `@/*` maps to `src/*`
 - Works in both TypeScript (tsconfig.json) and Vite (vite.config.ts via vite-tsconfig-paths plugin)
 - Example: `import { MainLayout } from '@/ui/MainLayout/MainLayout'`
 
-**5. Component Organization**
+**6. Component Organization**
 
 - Each component in its own folder with co-located test file
 - Test files use `.test.tsx` suffix
@@ -119,16 +140,20 @@ src/
 
 ### Build Configuration (vite.config.ts)
 
+- **SSG Configuration**: `vite-react-ssg` for static site generation
+- **SSR Externals**: `react-helmet-async` configured as SSR-compatible
+- **SSG Options**: HTML minification enabled for production
 - Production builds use content hashing for cache busting
 - CSS extraction in production (Vite handles automatically)
 - Console logs removed in production builds via terser
 - Dev server on port 3000 with fast HMR
-- Preview server on port 3000 for testing production builds
+- Preview server on port 3000 for testing SSG production builds
 - Static assets served from `public/` directory (Vite automatic handling)
 - Build output directory: `dist/` (Vite default)
 - Path alias `@` configured via vite-tsconfig-paths plugin
-- Manual code splitting: react-vendor and mui-vendor chunks
+- Function-based manual code splitting: react-vendor and mui-vendor chunks (SSR-compatible)
 - PostCSS with autoprefixer and postcss-preset-env for CSS processing
+- Build process: Sitemap generation → TypeScript check → SSG build
 
 ## Key Implementation Details
 
@@ -148,3 +173,34 @@ src/
 - Theme definition in `src/ui/theme/theme.ts`
 - `createAppTheme(mode)` function creates MUI theme with light/dark variants
 - ThemeContext provides `mode` and `toggleTheme()` to all components
+
+### SEO and Static Site Generation
+
+**Meta Tags and Structured Data:**
+
+- `SEOHead` component manages all meta tags dynamically
+- Supports multilingual meta tags (en/es)
+- Open Graph tags for social media sharing
+- Twitter Card tags for Twitter previews
+- Canonical URLs to prevent duplicate content
+- JSON-LD structured data (WebApplication schema)
+
+**Sitemap:**
+
+- Auto-generated before each build via `tsx scripts/generate-sitemap.ts`
+- Includes multilingual support (hreflang tags)
+- Weekly change frequency (matches data update schedule)
+- Production URL: `https://eurofuels.miguelangelcolmenero.es`
+
+**SSR Compatibility:**
+
+- All browser-only APIs guarded with `typeof window !== 'undefined'`
+- Theme and language preferences set after client hydration
+- SWR data fetching happens client-side only
+- Pre-rendered HTML provides immediate content visibility
+
+**robots.txt:**
+
+- Allows all search engine crawlers
+- References sitemap location
+- Blocks build artifacts and node_modules

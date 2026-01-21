@@ -25,6 +25,11 @@ type ThemeProviderProps = {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Get initial theme preference from localStorage or system preference
   const getInitialTheme = (): PaletteMode => {
+    // SSR Guard: Return default theme during SSR
+    if (typeof window === 'undefined') {
+      return 'light';
+    }
+
     const savedTheme = localStorage.getItem('theme') as PaletteMode | null;
 
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
@@ -44,13 +49,21 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Create the theme object
   const theme = useMemo(() => createAppTheme(mode), [mode]);
 
-  // Save theme preference to localStorage when it changes
+  // Save theme preference to localStorage when it changes (client-side only)
   useEffect(() => {
-    localStorage.setItem('theme', mode);
+    // SSR Guard: Only access localStorage in browser
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', mode);
+    }
   }, [mode]);
 
-  // Listen for system theme changes
+  // Listen for system theme changes (client-side only)
   useEffect(() => {
+    // SSR Guard: Only run in browser
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     const handleChange = (e: MediaQueryListEvent) => {
