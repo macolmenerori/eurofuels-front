@@ -15,7 +15,7 @@ export function Navbar() {
           </Typography>
         </Stack>
 
-        <Stack direction="row" spacing={1} alignSelf="end">
+        <Stack direction="row" spacing={1} alignSelf="end" alignItems="center">
           <LanguageSwitcher />
           <ThemeToggle />
         </Stack>
