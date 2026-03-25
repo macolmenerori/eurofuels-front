@@ -1,5 +1,8 @@
 #!/bin/sh
 
-docker pull zricethezav/gitleaks:latest
-docker run --name gitleaks-eurofuels-front -v $(pwd):/service zricethezav/gitleaks protect --verbose --redact --staged --source=/service
-docker rm gitleaks-eurofuels-front
+if ! command -v gitleaks &> /dev/null; then
+  echo "gitleaks not installed. Install it with: brew install gitleaks"
+  exit 1
+fi
+
+gitleaks protect --staged --redact

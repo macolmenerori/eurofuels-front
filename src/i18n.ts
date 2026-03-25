@@ -25,7 +25,8 @@ i18next.use(initReactI18next).init({
   resources,
   fallbackLng: 'en', // Default language
   // SSR Guard: Set language explicitly during SSR, let detector handle in browser
-  lng: typeof window === 'undefined' ? 'en' : undefined
+  lng: typeof window === 'undefined' ? 'en' : undefined,
+  showSupportNotice: false // Disable i18next support notice in console
 });
 
 export default i18next;
