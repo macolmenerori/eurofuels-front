@@ -1,6 +1,9 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
+  globals: {
+    __APP_VERSION__: '0.0.0-test'
+  },
   preset: 'ts-jest',
   testEnvironment: 'jest-fixed-jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/test/setupTests.tsx'],

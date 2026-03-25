@@ -1,6 +1,12 @@
+import { readFileSync } from 'node:fs';
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
+
+const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
+  version: string;
+};
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
@@ -10,6 +16,10 @@ export default defineConfig(({ mode }) => {
       react(),
       viteTsconfigPaths() // Handles @ → src/ alias from tsconfig
     ],
+
+    define: {
+      __APP_VERSION__: JSON.stringify(pkg.version)
+    },
 
     server: {
       port: 3000,
