@@ -34,8 +34,7 @@ i18n.use(initReactI18next).init({
     es: {
       translation: esTranslation
     }
-  },
-  showSupportNotice: false // Disable i18next support notice in console
+  }
 });
 
 interface ExtendedRenderOptions {
