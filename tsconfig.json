@@ -19,9 +19,8 @@
     "strictNullChecks": true,
     "target": "ES2020",
     "strict": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // This allows imports like: import Button from '@/components/Button'
+      "@/*": ["./src/*"] // This allows imports like: import Button from '@/components/Button'
     },
     "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom", "vite/client"]
   },
