@@ -20,7 +20,13 @@ export type LoadingSpinnerProps = CircularProgressProps & {
  */
 export function LoadingSpinner({ position, ...props }: LoadingSpinnerProps) {
   return (
-    <Box display="flex" justifyContent={position} data-testid="loading-spinner">
+    <Box
+      data-testid="loading-spinner"
+      sx={{
+        display: 'flex',
+        justifyContent: position
+      }}
+    >
       <CircularProgress {...props} />
     </Box>
   );
