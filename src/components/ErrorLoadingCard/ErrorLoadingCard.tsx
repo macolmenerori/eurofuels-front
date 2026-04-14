@@ -21,10 +21,20 @@ export default function ErrorLoadingCard({ title, message, showReload }: ErrorLo
     <Card sx={{ width: 360, margin: 'auto' }} data-testid="error-loading-card">
       <CardContent>
         <Stack spacing={2}>
-          <Typography textAlign="center" variant="h3">
+          <Typography
+            variant="h3"
+            sx={{
+              textAlign: 'center'
+            }}
+          >
             ⚠️ {title}
           </Typography>
-          <Typography textAlign="center" variant="body2">
+          <Typography
+            variant="body2"
+            sx={{
+              textAlign: 'center'
+            }}
+          >
             {message}
           </Typography>
         </Stack>
