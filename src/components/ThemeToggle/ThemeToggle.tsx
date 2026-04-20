@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { ThemeSwitch } from '@macolmenerori/component-library/theme-switch';
-import { Tooltip } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 
 import { useTheme } from '@/ui/theme/ThemeContext';
 

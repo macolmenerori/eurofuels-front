@@ -1,7 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { FormControl, MenuItem, Select, SelectChangeEvent, Tooltip } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import type { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
 
 export function LanguageSwitcher() {
   const { i18n, t } = useTranslation();

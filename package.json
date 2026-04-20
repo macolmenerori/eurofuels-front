@@ -10,13 +10,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite-react-ssg dev",
-    "build": "tsx scripts/generate-sitemap.ts && tsc -b && vite-react-ssg build",
+    "build": "tsx scripts/generate-sitemap.ts && tsc --noEmit && vite-react-ssg build",
     "preview": "vite-react-ssg preview",
     "prettify": "prettier -w --log-level=silent src/",
     "lint": "eslint --fix ./src/",
     "test": "jest",
     "types": "tsc --noEmit",
-    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm audit --prod && pnpm build",
+    "verify": "pnpm audit --prod && pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm build",
     "gitleaks": "sh scripts/gitleaks.sh",
     "release": "npx tsx scripts/release.ts"
   },

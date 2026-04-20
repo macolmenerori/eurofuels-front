@@ -1,6 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 
-import { CssBaseline } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import { MainLayout } from '@/ui/MainLayout/MainLayout';
 import { ThemeProvider } from '@/ui/theme/ThemeContext';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { render } from '@testing-library/react';
 import i18n from 'i18next';
 

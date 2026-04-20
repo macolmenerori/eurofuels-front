@@ -1,6 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button, Card, CardActions, CardContent, Stack, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 interface ErrorLoadingCardProps {
   title: string;
