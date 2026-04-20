@@ -1,5 +1,8 @@
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import { AppBar, Box, Stack, Typography } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle/ThemeToggle';

@@ -1,5 +1,6 @@
-import { CircularProgress, CircularProgressProps } from '@mui/material';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
+import type { CircularProgressProps } from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export type LoadingSpinnerProps = CircularProgressProps & {
   position?: 'right' | 'left' | 'center';
