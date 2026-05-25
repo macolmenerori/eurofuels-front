@@ -20,7 +20,7 @@
     "gitleaks": "sh scripts/gitleaks.sh",
     "release": "npx tsx scripts/release.ts"
   },
-  "packageManager": "pnpm@11.1.2",
+  "packageManager": "pnpm@11.3.0",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
