@@ -33,7 +33,7 @@ const config: Config.InitialOptions = {
       }
     ]
   },
-  transformIgnorePatterns: ['/node_modules/(?!(.pnpm|@mswjs|msw|until-async)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!(.pnpm|@mswjs|msw|until-async|rettime|@open-draft|headers-polyfill)/)'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts', '!src/index.tsx'],
