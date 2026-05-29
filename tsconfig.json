@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedSideEffectImports": true,
+    "outDir": "./dist/",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "target": "ES2020",
+    "strict": true,
+    "paths": {
+      "@/*": ["./app/*"] // This allows imports like: import Button from '@/components/Button'
+    },
+    "types": ["node", "react", "react-dom"]
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["app/**/*.ts", "app/**/*.tsx", ".react-router/types/**/*.ts"]
+}
