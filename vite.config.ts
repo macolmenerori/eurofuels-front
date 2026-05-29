@@ -1,12 +1,13 @@
 import { readFileSync } from "node:fs";
-import { defineConfig, Plugin } from "vite";
+import { reactRouter } from "@react-router/dev/vite";
+import { defineConfig } from "vite";
 
 const pkg = JSON.parse(readFileSync("./package.json", "utf-8")) as {
   version: string;
 };
 
 export default defineConfig({
-  plugins: [],
+  plugins: [reactRouter()],
 
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
@@ -19,11 +20,9 @@ export default defineConfig({
 
   // Build configuration (prod)
   build: {
-    outDir: "dist",
-    sourcemap: false, // User preference: no source maps in production
-    assetsInlineLimit: 4096, // 4KB - Vite default (user preference)
+    sourcemap: false,
+    assetsInlineLimit: 4096,
     cssCodeSplit: true,
-    // Minification (no console removal per user preference)
     minify: true,
     target: "es2020",
   },

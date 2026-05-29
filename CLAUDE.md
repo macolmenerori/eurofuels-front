@@ -24,9 +24,9 @@ EuroFuels — web app showing fuel prices across 27 EU member states. Map is the
 
 ```
 app/
-  routes/          # React Router v7 file-based routes
+  pages/           # React Router v7 file-based routes
   components/      # shared UI components
-  theme/           # MUI theme config (light + dark)
+  ui/              # MUI theme config (light + dark)
   i18n/            # i18next setup + translation files
   hooks/           # custom React hooks
   lib/             # utilities, API clients
