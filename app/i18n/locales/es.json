@@ -1,0 +1,22 @@
+{
+  "common": {
+    "appName": "EuroFuels"
+  },
+  "nav": {
+    "map": "Mapa",
+    "stats": "Estadísticas",
+    "about": "Acerca de"
+  },
+  "map": {
+    "title": "Mapa"
+  },
+  "stats": {
+    "title": "Estadísticas"
+  },
+  "about": {
+    "title": "Acerca de"
+  },
+  "notFound": {
+    "title": "404 – Página no encontrada"
+  }
+}

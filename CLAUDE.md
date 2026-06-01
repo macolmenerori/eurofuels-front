@@ -27,7 +27,12 @@ app/
   pages/           # React Router v7 file-based routes
   components/      # shared UI components
   ui/              # MUI theme config (light + dark)
-  i18n/            # i18next setup + translation files
+  i18n/
+    index.ts       # side-effect init module (imported in root.tsx)
+    i18next.d.ts   # TS module augmentation — t() keys typed against en.json
+    locales/
+      en.json      # canonical key set (fallback)
+      es.json      # Spanish translations
   hooks/           # custom React hooks
   lib/             # utilities, API clients
   root.tsx         # app root (ThemeProvider, RouterProvider, i18n init)
@@ -78,7 +83,14 @@ Theme lives in `app/ui/`:
 
 ## i18n
 
-Supported languages: EN and ES for the moment, EN by default. Translations live under `app/i18n/locales/`. Use `useTranslation` hook; never hardcode user-visible strings.
+Supported languages: EN (default/fallback) and ES. Translations live under `app/i18n/locales/`.
+
+- Init module `app/i18n/index.ts` is imported as a side-effect in `root.tsx` (`import '@/i18n'`). No `<I18nextProvider>` — global instance.
+- Detection order: `localStorage['eurofuel:lang']` → browser navigator. Persists to localStorage only (no cookie). Region codes stripped (`load: 'languageOnly'`), so `es-MX` → `es`, `en-GB` → `en`. Unsupported langs fall back to EN.
+- Key shape: nested by area — `common`, `nav`, `map`, `stats`, `about`, `notFound`. `en.json` is the canonical key set; always add keys there first.
+- `t()` keys are type-checked via `app/i18n/i18next.d.ts` augmentation — a typo in a key is a build error.
+- Use `useTranslation` hook in components; never hardcode user-visible strings.
+- `meta()` route exports are **not** i18n'd — they run outside React and prerender bakes them as EN.
 
 ## TypeScript notes
 

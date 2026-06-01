@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { MetaFunction } from 'react-router';
 
 export const meta: MetaFunction = () => [
@@ -7,9 +8,11 @@ export const meta: MetaFunction = () => [
 ];
 
 export default function StatsPage(): React.JSX.Element {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1>Stats Page</h1>
+      <h1>{t('stats.title')}</h1>
       {/* Stats component will go here */}
     </div>
   );
