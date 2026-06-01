@@ -14,7 +14,7 @@ EuroFuels — web app showing fuel prices across 27 EU member states. Map is the
 - **SWR** for data fetching
 - **MSW** for API mocking in tests
 - **pnpm** as package manager (node ≥ 24.11.0)
-- **`@macolmenerori/component-library`** — internal component library; handle CSS imports via SSR `noExternal` config (already set in `vite.config.ts`)
+- **`@macolmenerori/component-library`** — internal component library; handle CSS imports via SSR `noExternal` config (already set in `vite.config.ts`). Each component subpackage ships its own CSS — import the CSS side-effect in `root.tsx` alongside fonts (e.g. `import '@macolmenerori/component-library/theme-switch-css'`). Import the component from its subpath: `import { ThemeSwitch } from '@macolmenerori/component-library/theme-switch'`.
 
 ## Path aliases
 
@@ -30,9 +30,7 @@ app/
   i18n/
     index.ts       # side-effect init module (imported in root.tsx)
     i18next.d.ts   # TS module augmentation — t() keys typed against en.json
-    locales/
-      en.json      # canonical key set (fallback)
-      es.json      # Spanish translations
+    locales/       # Translation files
   hooks/           # custom React hooks
   lib/             # utilities, API clients
   root.tsx         # app root (ThemeProvider, RouterProvider, i18n init)
@@ -90,7 +88,12 @@ Supported languages: EN (default/fallback) and ES. Translations live under `app/
 - Key shape: nested by area — `common`, `nav`, `map`, `stats`, `about`, `notFound`. `en.json` is the canonical key set; always add keys there first.
 - `t()` keys are type-checked via `app/i18n/i18next.d.ts` augmentation — a typo in a key is a build error.
 - Use `useTranslation` hook in components; never hardcode user-visible strings.
+- For programmatic language changes (e.g. a language selector), import the i18n instance directly: `import i18n from '@/i18n'` and call `i18n.changeLanguage(lang)`. The detector caches the choice to `localStorage['eurofuel:lang']` automatically.
 - `meta()` route exports are **not** i18n'd — they run outside React and prerender bakes them as EN.
+
+## Routing notes
+
+- The root `/` route uses `<NavLink to="/" end>` — the `end` prop is required to prevent it matching as active on every nested route.
 
 ## TypeScript notes
 

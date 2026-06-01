@@ -3,6 +3,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import '@fontsource-variable/manrope';
 import '@fontsource-variable/jetbrains-mono';
+import '@macolmenerori/component-library/theme-switch-css';
 import '@/i18n';
 
 import { ThemeModeProvider } from '@/ui/ThemeModeProvider';
