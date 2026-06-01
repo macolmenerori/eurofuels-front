@@ -1,15 +1,10 @@
 import React from 'react';
-import type { LinksFunction } from 'react-router';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
-export const links: LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap'
-  }
-];
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/jetbrains-mono';
+
+import { ThemeModeProvider } from '@/ui/ThemeModeProvider';
 
 export function Layout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
@@ -30,5 +25,9 @@ export function Layout({ children }: { children: React.ReactNode }): React.JSX.E
 }
 
 export default function App(): React.JSX.Element {
-  return <Outlet />;
+  return (
+    <ThemeModeProvider>
+      <Outlet />
+    </ThemeModeProvider>
+  );
 }
