@@ -1,18 +1,33 @@
 import { cleanup } from '@testing-library/react';
-import { afterEach, beforeAll } from 'vitest';
+import { mutate } from 'swr';
+import { afterAll, afterEach, beforeAll } from 'vitest';
 
 import '@testing-library/jest-dom/vitest';
 
 import i18n from '@/i18n';
+import { server } from '@/test/mocks/server';
 
 // Force EN for all tests so assertions on translated strings are deterministic.
 beforeAll(async () => {
   await i18n.changeLanguage('en');
+
+  // Start MSW server — error on any unhandled request to catch missing handlers early.
+  server.listen({ onUnhandledRequest: 'error' });
 });
 
 // Unmount components after each test to prevent state leaking across tests.
-afterEach(() => {
+afterEach(async () => {
   cleanup();
+
+  // Reset any runtime handler overrides so the next test gets the defaults.
+  server.resetHandlers();
+
+  // Purge the SWR global cache so fetch states don't bleed across tests.
+  await mutate(() => true, undefined, { revalidate: false });
+});
+
+afterAll(() => {
+  server.close();
 });
 
 // jsdom has no matchMedia implementation. MUI theme resolution and useMediaQuery

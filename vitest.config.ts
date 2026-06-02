@@ -7,6 +7,25 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
   version: string;
 };
 
+// Parse .env manually so import.meta.env.VITE_* variables are available in tests.
+// Vitest exposes these via define rather than relying on runtime env-file injection.
+function parseEnvFile(path: string): Record<string, string> {
+  try {
+    return Object.fromEntries(
+      readFileSync(path, 'utf-8')
+        .split('\n')
+        .filter((line) => line.trim() && !line.startsWith('#'))
+        .map((line) => {
+          const [key, ...rest] = line.split('=');
+          return [key.trim(), rest.join('=').trim()] as [string, string];
+        })
+    );
+  } catch {
+    return {};
+  }
+}
+const dotenv = parseEnvFile('.env');
+
 export default defineConfig({
   plugins: [
     react(),
@@ -15,7 +34,11 @@ export default defineConfig({
 
   define: {
     // Mirror the production Vite global so components that read it don't throw.
-    __APP_VERSION__: JSON.stringify(pkg.version)
+    __APP_VERSION__: JSON.stringify(pkg.version),
+    // Expose VITE_* env vars so import.meta.env.VITE_* resolves in test files.
+    'import.meta.env.VITE_COUNTRY_DATA_ENDPOINT': JSON.stringify(
+      dotenv.VITE_COUNTRY_DATA_ENDPOINT ?? ''
+    )
   },
 
   test: {

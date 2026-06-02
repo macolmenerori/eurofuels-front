@@ -3,6 +3,7 @@ import { MemoryRouter, type MemoryRouterProps } from 'react-router';
 
 import { render, type RenderOptions, type RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { SWRConfig } from 'swr';
 
 import '@/i18n'; // ensure i18n instance is initialised before any component renders
 
@@ -28,7 +29,14 @@ function customRender(
   function Wrapper({ children }: { children: React.ReactNode }): React.JSX.Element {
     return (
       <MemoryRouter initialEntries={initialEntries}>
-        <ThemeModeProvider>{children}</ThemeModeProvider>
+        <ThemeModeProvider>
+          {/* Fresh SWR cache per render; retry disabled so error state resolves immediately. */}
+          <SWRConfig
+            value={{ provider: () => new Map(), dedupingInterval: 0, shouldRetryOnError: false }}
+          >
+            {children}
+          </SWRConfig>
+        </ThemeModeProvider>
       </MemoryRouter>
     );
   }
