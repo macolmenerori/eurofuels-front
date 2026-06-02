@@ -5,7 +5,8 @@
   "nav": {
     "map": "Mapa",
     "stats": "Estadísticas",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "openMenu": "Abrir menú"
   },
   "map": {
     "title": "Mapa"
