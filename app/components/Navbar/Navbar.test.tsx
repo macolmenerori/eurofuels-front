@@ -9,7 +9,7 @@ describe('Navbar', () => {
     render(<Navbar />);
     // Brand is split across two spans: "Euro" + "Fuel"
     expect(screen.getByText('Euro')).toBeInTheDocument();
-    expect(screen.getByText('Fuel')).toBeInTheDocument();
+    expect(screen.getByText('Fuels')).toBeInTheDocument();
   });
 
   it('renders all nav links with EN translations', () => {

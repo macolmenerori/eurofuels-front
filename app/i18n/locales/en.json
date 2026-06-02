@@ -11,7 +11,14 @@
     "title": "Map"
   },
   "stats": {
-    "title": "Stats"
+    "title": "Fuel Prices in the EU",
+    "loading": "Loading...",
+    "error": "Error fetching data",
+    "table": {
+      "country": "Country",
+      "petrol": "Petrol (€/1000 L)",
+      "diesel": "Diesel (€/1000 L)"
+    }
   },
   "about": {
     "title": "About"

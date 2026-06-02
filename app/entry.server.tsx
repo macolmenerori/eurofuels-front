@@ -9,12 +9,14 @@ export default async function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   routerContext: EntryContext,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _loadContext: AppLoadContext
 ): Promise<Response> {
   const stream = await renderToReadableStream(
     <ServerRouter context={routerContext} url={request.url} />,
     {
       onError(error: unknown) {
+        // eslint-disable-next-line no-console
         console.error(error);
         responseStatusCode = 500;
       }

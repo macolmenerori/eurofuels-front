@@ -62,7 +62,7 @@ export function Navbar(): React.JSX.Element {
             Euro
           </Box>
           <Box component="span" sx={{ color: 'accent.main' }}>
-            Fuel
+            Fuels
           </Box>
         </Typography>
         <Typography

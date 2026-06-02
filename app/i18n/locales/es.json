@@ -11,7 +11,14 @@
     "title": "Mapa"
   },
   "stats": {
-    "title": "Estadísticas"
+    "title": "Precios de combustible en la UE",
+    "loading": "Cargando...",
+    "error": "Error al obtener los datos",
+    "table": {
+      "country": "País",
+      "petrol": "Gasolina (€/1000 L)",
+      "diesel": "Gasóleo (€/1000 L)"
+    }
   },
   "about": {
     "title": "Acerca de"
