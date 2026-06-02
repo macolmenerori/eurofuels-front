@@ -13,6 +13,7 @@
   "stats": {
     "title": "Precios de combustible en la UE",
     "loading": "Cargando...",
+    "errorTitle": "Algo salió mal",
     "error": "Error al obtener los datos",
     "table": {
       "country": "País",

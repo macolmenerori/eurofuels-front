@@ -42,6 +42,19 @@ interface EfShadows {
   glowHover: string;
 }
 
+interface EfStatusVariant {
+  bg: string;
+  border: string;
+  text: string;
+}
+
+interface EfStatus {
+  success: EfStatusVariant;
+  warning: EfStatusVariant;
+  error: EfStatusVariant;
+  info: EfStatusVariant;
+}
+
 interface EfTokens {
   surfaceElevated: string;
   borderStrong: string;
@@ -51,6 +64,7 @@ interface EfTokens {
   dotPattern: string;
   radii: EfRadii;
   shadows: EfShadows;
+  status: EfStatus;
 }
 
 // Radii scale is theme-invariant (DESIGN `rounded`).
@@ -68,6 +82,12 @@ const lightEf: EfTokens = {
     sm: '0 1px 3px rgba(15, 23, 42, 0.08)',
     lg: '0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08)',
     glowHover: 'drop-shadow(0 4px 14px #1e40af33)'
+  },
+  status: {
+    success: { bg: '#dcfce7', border: '#16a34a', text: '#15803d' },
+    warning: { bg: '#fef9c3', border: '#ca8a04', text: '#a16207' },
+    error: { bg: '#fee2e2', border: '#dc2626', text: '#b91c1c' },
+    info: { bg: '#f1f5f9', border: '#64748b', text: '#475569' }
   }
 };
 
@@ -83,6 +103,12 @@ const darkEf: EfTokens = {
     sm: '0 1px 3px rgba(0, 0, 0, 0.4)',
     lg: '0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.5)',
     glowHover: 'drop-shadow(0 4px 14px #60A5FA47)'
+  },
+  status: {
+    success: { bg: 'rgba(22, 163, 74, 0.12)', border: '#4ade80', text: '#86efac' },
+    warning: { bg: 'rgba(234, 179, 8, 0.12)', border: '#facc15', text: '#fde047' },
+    error: { bg: 'rgba(248, 113, 113, 0.15)', border: '#f87171', text: '#fca5a5' },
+    info: { bg: 'rgba(148, 163, 184, 0.12)', border: '#94a3b8', text: '#cbd5e1' }
   }
 };
 

@@ -13,6 +13,7 @@
   "stats": {
     "title": "Fuel Prices in the EU",
     "loading": "Loading...",
+    "errorTitle": "Something went wrong",
     "error": "Error fetching data",
     "table": {
       "country": "Country",
