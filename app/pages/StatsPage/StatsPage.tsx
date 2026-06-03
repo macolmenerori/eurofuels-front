@@ -44,7 +44,7 @@ export default function StatsPage(): React.JSX.Element {
 
       {isLoading && (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <CircularProgress aria-label="Loading…" />
+          <CircularProgress aria-label={t('stats.loading')} />
         </Box>
       )}
       {error && (

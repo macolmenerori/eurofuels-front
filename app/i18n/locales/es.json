@@ -1,34 +1,37 @@
 {
-  "common": {
-    "appName": "EuroFuels"
-  },
-  "nav": {
-    "map": "Mapa",
-    "stats": "Estadísticas",
-    "about": "Acerca de",
-    "openMenu": "Abrir menú"
-  },
-  "map": {
-    "title": "Mapa",
-    "gasoline": "Gasolina",
-    "diesel": "Diésel",
-    "unit": "€/1000 L"
-  },
-  "stats": {
-    "title": "Precios de combustible en la UE",
-    "loading": "Cargando...",
-    "errorTitle": "Algo salió mal",
-    "error": "Error al obtener los datos",
-    "table": {
-      "country": "País",
-      "petrol": "Gasolina (€/1000 L)",
-      "diesel": "Gasóleo (€/1000 L)"
-    }
-  },
   "about": {
     "title": "Acerca de"
   },
+  "common": {
+    "appName": "EuroFuels"
+  },
+  "map": {
+    "diesel": "Diésel",
+    "error": "Error al cargar el mapa",
+    "errorTitle": "Algo salió mal",
+    "gasoline": "Gasolina",
+    "loading": "Cargando...",
+    "title": "Mapa",
+    "unit": "€/1000 L"
+  },
+  "nav": {
+    "about": "Acerca de",
+    "map": "Mapa",
+    "openMenu": "Abrir menú",
+    "stats": "Estadísticas"
+  },
   "notFound": {
     "title": "404 – Página no encontrada"
+  },
+  "stats": {
+    "error": "Error al obtener los datos",
+    "errorTitle": "Algo salió mal",
+    "loading": "Cargando...",
+    "table": {
+      "country": "País",
+      "diesel": "Gasóleo (€/1000 L)",
+      "petrol": "Gasolina (€/1000 L)"
+    },
+    "title": "Precios de combustible en la UE"
   }
 }

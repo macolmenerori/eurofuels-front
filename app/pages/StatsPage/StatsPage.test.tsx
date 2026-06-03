@@ -30,7 +30,7 @@ describe('StatsPage', () => {
       render(<StatsPage />);
 
       // Spinner should be visible synchronously on first render.
-      expect(screen.getByLabelText('Loading…')).toBeInTheDocument();
+      expect(screen.getByLabelText('Loading...')).toBeInTheDocument();
     });
   });
 
@@ -42,7 +42,7 @@ describe('StatsPage', () => {
       expect(await screen.findByText('Austria')).toBeInTheDocument();
 
       // No spinner or error card once data is loaded.
-      expect(screen.queryByLabelText('Loading…')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Loading...')).not.toBeInTheDocument();
       expect(screen.queryByText('Something went wrong')).not.toBeInTheDocument();
     });
 
@@ -71,7 +71,7 @@ describe('StatsPage', () => {
       expect(screen.getByText('Error fetching data')).toBeInTheDocument();
 
       // No spinner or table.
-      expect(screen.queryByLabelText('Loading…')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Loading...')).not.toBeInTheDocument();
       expect(screen.queryByRole('table')).not.toBeInTheDocument();
     });
   });
