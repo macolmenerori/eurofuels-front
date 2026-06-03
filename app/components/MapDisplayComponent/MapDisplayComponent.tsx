@@ -6,6 +6,7 @@ import type { GeoJSONSource, Map as MapboxMap } from 'mapbox-gl';
 
 import CountryTooltip from './CountryTooltip';
 import { buildFillColor, getPriceDomain, mergePrices } from './mapColor';
+import MapLegend from './MapLegend';
 import { buildPriceLookup, computeFlip } from './tooltipHelpers';
 
 import type { CountryPriceWithIso } from '@/lib/types';
@@ -56,6 +57,8 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
 
   // O(1) ISO→row lookup built once per data update; used in render to get prices.
   const lookup = useMemo(() => buildPriceLookup(data), [data]);
+  // Price domain (min/mean/max) shared between the map fill expression and the legend.
+  const domain = useMemo(() => getPriceDomain(data), [data]);
 
   useEffect(() => {
     dataRef.current = data;
@@ -227,11 +230,10 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
 
     if (map.getLayer('eu-fill')) {
       const { fill, scale } = theme.ef.map;
-      const domain = getPriceDomain(data);
       const fillExpr = domain ? buildFillColor(domain, { ...scale, neutral: fill }) : fill;
       map.setPaintProperty('eu-fill', 'fill-color', fillExpr);
     }
-  }, [data, theme.ef.map]);
+  }, [data, domain, theme.ef.map]);
 
   // ─── Theme switch effect ─────────────────────────────────────────────────────
   // Swap the hosted Mapbox base style on mode toggle. setStyle wipes all custom
@@ -260,6 +262,7 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
           flipY={hoverState.flipY}
         />
       )}
+      {domain && <MapLegend domain={domain} />}
     </div>
   );
 }

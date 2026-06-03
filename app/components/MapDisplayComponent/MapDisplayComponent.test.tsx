@@ -48,8 +48,14 @@ describe('MapDisplayComponent', () => {
     expect(container.querySelector('div')).toBeTruthy();
   });
 
-  it('renders no visible text — the map is a canvas-only surface', () => {
+  it('renders the legend unit text when valid data is supplied', () => {
     render(<MapDisplayComponent data={mockData} />);
-    expect(screen.queryByText(/\w+/)).toBeNull();
+    // MapLegend is visible when getPriceDomain returns a non-null domain.
+    expect(screen.getByText('€/1000 L')).toBeTruthy();
+  });
+
+  it('renders no legend when data has no valid prices', () => {
+    render(<MapDisplayComponent data={[]} />);
+    expect(screen.queryByText('€/1000 L')).toBeNull();
   });
 });
