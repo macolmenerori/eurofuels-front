@@ -6,7 +6,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useSWR from 'swr';
 
-import { PricesTable } from '@/components/PricesTable/PricesTable';
+import { PricesStats } from '@/components/PricesStats/PricesStats';
 import { StatusCard } from '@/components/StatusCard/StatusCard';
 import { fetcher } from '@/lib/fetcher';
 import type { CountryPrice } from '@/lib/types';
@@ -34,11 +34,7 @@ export default function StatsPage(): React.JSX.Element {
         padding: theme.spacing(6)
       }}
     >
-      <Typography
-        variant="headlineSm"
-        component="h1"
-        sx={{ mb: theme.spacing(4), textAlign: 'center' }}
-      >
+      <Typography variant="h4" component="h1" sx={{ mb: theme.spacing(4), textAlign: 'center' }}>
         {t('stats.title')}
       </Typography>
 
@@ -50,7 +46,7 @@ export default function StatsPage(): React.JSX.Element {
       {error && (
         <StatusCard status="error" title={t('stats.errorTitle')} message={t('stats.error')} />
       )}
-      {data && <PricesTable data={data} />}
+      {data && <PricesStats data={data} />}
     </Box>
   );
 }

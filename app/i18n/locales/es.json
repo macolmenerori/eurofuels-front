@@ -27,11 +27,16 @@
     "error": "Error al obtener los datos",
     "errorTitle": "Algo salió mal",
     "loading": "Cargando...",
+    "pricesStats": {
+      "pricesTable": {
+        "title": "Precios por país"
+      }
+    },
     "table": {
       "country": "País",
       "diesel": "Gasóleo (€/1000 L)",
       "petrol": "Gasolina (€/1000 L)"
     },
-    "title": "Precios de combustible en la UE"
+    "title": "Estadísticas de precios de combustible en la UE"
   }
 }

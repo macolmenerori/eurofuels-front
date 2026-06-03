@@ -22,6 +22,7 @@ describe('PricesTable', () => {
   describe('headers', () => {
     it('renders EN column headers', () => {
       render(<PricesTable data={data} />);
+      expect(screen.getByText('Prices by Country')).toBeInTheDocument();
       expect(screen.getByText('Country')).toBeInTheDocument();
       expect(screen.getByText('Petrol (€/1000 L)')).toBeInTheDocument();
       expect(screen.getByText('Diesel (€/1000 L)')).toBeInTheDocument();
@@ -32,6 +33,7 @@ describe('PricesTable', () => {
       await act(async () => {
         await i18n.changeLanguage('es');
       });
+      expect(screen.getByText('Precios por país')).toBeInTheDocument();
       expect(screen.getByText('País')).toBeInTheDocument();
       expect(screen.getByText('Gasolina (€/1000 L)')).toBeInTheDocument();
       expect(screen.getByText('Gasóleo (€/1000 L)')).toBeInTheDocument();

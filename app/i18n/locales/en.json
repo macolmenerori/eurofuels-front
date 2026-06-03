@@ -27,11 +27,16 @@
     "error": "Error fetching data",
     "errorTitle": "Something went wrong",
     "loading": "Loading...",
+    "pricesStats": {
+      "pricesTable": {
+        "title": "Prices by Country"
+      }
+    },
     "table": {
       "country": "Country",
       "diesel": "Diesel (€/1000 L)",
       "petrol": "Petrol (€/1000 L)"
     },
-    "title": "Fuel Prices in the EU"
+    "title": "Fuel Prices Stats in the EU"
   }
 }

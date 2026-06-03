@@ -13,7 +13,7 @@ describe('StatsPage', () => {
     it('renders the page title', async () => {
       render(<StatsPage />);
       // Title is always present regardless of fetch state; wait for it to appear.
-      expect(await screen.findByText('Fuel Prices in the EU')).toBeInTheDocument();
+      expect(await screen.findByText('Fuel Prices Stats in the EU')).toBeInTheDocument();
     });
   });
 
