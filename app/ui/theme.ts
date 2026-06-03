@@ -31,9 +31,16 @@ interface EfRadii {
   full: number;
 }
 
+interface EfMapScale {
+  low: string;
+  mid: string;
+  high: string;
+}
+
 interface EfMap {
   fill: string;
   stroke: string;
+  scale: EfMapScale;
 }
 
 interface EfShadows {
@@ -75,7 +82,11 @@ const lightEf: EfTokens = {
   borderStrong: '#0F172A24',
   primaryFaded: '#1e40af14',
   primaryGlow: '#1e40af33',
-  map: { fill: '#E5E2D2', stroke: '#FAF9F2' },
+  map: {
+    fill: '#E5E2D2',
+    stroke: '#FAF9F2',
+    scale: { low: '#2e7d32', mid: '#f9a825', high: '#c62828' }
+  },
   dotPattern: '#0F172A0F',
   radii,
   shadows: {
@@ -96,7 +107,11 @@ const darkEf: EfTokens = {
   borderStrong: '#FFFFFF24',
   primaryFaded: '#60A5FA1A',
   primaryGlow: '#60A5FA47',
-  map: { fill: '#1A2D47', stroke: '#0A1A2B' },
+  map: {
+    fill: '#1A2D47',
+    stroke: '#0A1A2B',
+    scale: { low: '#43a047', mid: '#fbc02d', high: '#e53935' }
+  },
   dotPattern: '#FFFFFF0A',
   radii,
   shadows: {

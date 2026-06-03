@@ -2,6 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import type { MetaFunction } from 'react-router';
 
+import Box from '@mui/material/Box';
+
+import MapDisplayComponent from '@/components/MapDisplayComponent/MapDisplayComponent';
+import { useMapData } from '@/hooks/useMapData';
+
 export const meta: MetaFunction = () => [
   { title: 'EuroFuels – EU Fuel Prices Map' },
   { name: 'description', content: 'Real-time fuel prices across 27 EU member states.' }
@@ -9,11 +14,13 @@ export const meta: MetaFunction = () => [
 
 export default function MapPage(): React.JSX.Element {
   const { t } = useTranslation();
+  const { data, isLoading, error } = useMapData();
 
   return (
-    <div>
-      <h1>{t('map.title')}</h1>
-      {/* Map component will go here */}
-    </div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      {isLoading && <p>Loading</p>}
+      {error && <p>Error</p>}
+      <Box sx={{ flex: 1, minHeight: 0 }}>{data && <MapDisplayComponent data={data} />}</Box>
+    </Box>
   );
 }

@@ -6,6 +6,8 @@ import '@fontsource-variable/jetbrains-mono';
 import '@macolmenerori/component-library/theme-switch-css';
 import '@/i18n';
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 import { ThemeModeProvider } from '@/ui/ThemeModeProvider';
 
 export function Layout({ children }: { children: React.ReactNode }): React.JSX.Element {
