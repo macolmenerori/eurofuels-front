@@ -9,7 +9,10 @@
     "openMenu": "Abrir menú"
   },
   "map": {
-    "title": "Mapa"
+    "title": "Mapa",
+    "gasoline": "Gasolina",
+    "diesel": "Diésel",
+    "unit": "€/1000 L"
   },
   "stats": {
     "title": "Precios de combustible en la UE",
