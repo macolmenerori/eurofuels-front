@@ -4,9 +4,9 @@ import { useTheme } from '@mui/material/styles';
 import type { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MapboxMap } from 'mapbox-gl';
 
-import CountryTooltip from './CountryTooltip';
+import CountryTooltip from './CountryTooltip/CountryTooltip';
+import MapLegend from './MapLegend/MapLegend';
 import { buildFillColor, getPriceDomain, mergePrices } from './mapColor';
-import MapLegend from './MapLegend';
 import { buildPriceLookup, computeFlip } from './tooltipHelpers';
 
 import type { CountryPriceWithIso } from '@/lib/types';

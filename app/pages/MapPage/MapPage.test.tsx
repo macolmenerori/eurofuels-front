@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { delay, http, HttpResponse } from 'msw';
 import { describe, expect, it, vi } from 'vitest';
 

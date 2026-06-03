@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-import type { PriceDomain } from './mapColor';
+import type { PriceDomain } from '../mapColor';
 
 import { formatPrice } from '@/lib/format';
 
