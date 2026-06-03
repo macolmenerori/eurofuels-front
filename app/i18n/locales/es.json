@@ -28,6 +28,9 @@
     "errorTitle": "Algo salió mal",
     "loading": "Cargando...",
     "pricesStats": {
+      "pricesAverages": {
+        "average": "Media"
+      },
       "pricesTable": {
         "title": "Precios por país"
       }

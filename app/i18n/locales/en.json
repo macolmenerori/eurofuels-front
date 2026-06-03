@@ -28,6 +28,9 @@
     "errorTitle": "Something went wrong",
     "loading": "Loading...",
     "pricesStats": {
+      "pricesAverages": {
+        "average": "Average"
+      },
       "pricesTable": {
         "title": "Prices by Country"
       }
