@@ -95,6 +95,21 @@ Supported languages: EN (default/fallback) and ES. Translations live under `app/
 
 - The root `/` route uses `<NavLink to="/" end>` — the `end` prop is required to prevent it matching as active on every nested route.
 
+## Environment variables
+
+- `VITE_COUNTRY_DATA_ENDPOINT` — URL for country price data. Typed in `app/types/vite-env.d.ts` (also augments `ImportMeta`). Required at runtime and in tests (vitest reads `.env` manually).
+
+## lib utilities
+
+- `app/lib/types.ts` — shared types (`CountryPrice: { country, gasoline, diesel }`).
+- `app/lib/fetcher.ts` — generic `fetcher<T>(url)` for SWR; throws on non-OK responses.
+- `app/lib/format.ts` — `formatPrice(value, locale)` formats price strings via `Intl.NumberFormat` (2 decimals, returns `'—'` for NaN).
+
+## Testing
+
+- MSW fully wired: `app/test/mocks/handlers.ts` intercepts `VITE_COUNTRY_DATA_ENDPOINT`, `app/test/mocks/server.ts` exports the MSW node server. Setup in `app/test/setup.ts`: server started `beforeAll`, reset `afterEach`, closed `afterAll`.
+- SWR cache isolated per render: `test-utils.tsx` wraps renders in `<SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0, shouldRetryOnError: false }}>`. SWR global cache also purged via `mutate()` in `afterEach`.
+
 ## TypeScript notes
 
 - `__APP_VERSION__` global is injected by Vite from `package.json`.
