@@ -6,19 +6,17 @@ RUN corepack enable
 
 WORKDIR /usr/app
 
-COPY src src
+COPY app app
 COPY public public
-COPY index.html index.html
 COPY package.json package.json
 COPY pnpm-lock.yaml pnpm-lock.yaml
-COPY .npmrc .npmrc
+COPY pnpm-workspace.yaml pnpm-workspace.yaml
+COPY react-router.config.ts react-router.config.ts
 COPY .prettierrc .prettierrc
-COPY .prettierignore .prettierignore
 COPY eslint.config.js eslint.config.js
-COPY jest.config.ts jest.config.ts
 COPY tsconfig.json tsconfig.json
 COPY vite.config.ts vite.config.ts
-COPY postcss.config.js postcss.config.js
+COPY vitest.config.ts vitest.config.ts
 
 RUN pnpm i --frozen-lockfile
 RUN pnpm build
@@ -27,7 +25,7 @@ RUN pnpm build
 FROM nginx:stable-alpine
 LABEL app="eurofuels-front" stack.binary="nginx" stack.version="stable-alpine"
 
-COPY --from=builder /usr/app/dist /usr/share/nginx/html
+COPY --from=builder /usr/app/dist/client /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

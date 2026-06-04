@@ -1,73 +1,52 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync } from "node:fs";
+import { reactRouter } from "@react-router/dev/vite";
+import { defineConfig } from "vite";
 
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
-
-const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
+const pkg = JSON.parse(readFileSync("./package.json", "utf-8")) as {
   version: string;
 };
 
-export default defineConfig(({ mode }) => {
-  const isProd = mode === 'production';
+export default defineConfig({
+  plugins: [reactRouter()],
 
-  return {
-    plugins: [
-      react(),
-      viteTsconfigPaths() // Handles @ → src/ alias from tsconfig
-    ],
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+  },
 
-    define: {
-      __APP_VERSION__: JSON.stringify(pkg.version)
-    },
+  resolve: {
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    tsconfigPaths: true,
+  },
 
-    server: {
-      port: 3000,
-      open: false,
-      host: true
-    },
+  // Build configuration (prod)
+  build: {
+    sourcemap: false,
+    assetsInlineLimit: 4096,
+    cssCodeSplit: true,
+    minify: true,
+    target: "es2020",
+  },
 
-    preview: {
-      port: 3000
-    },
+  // Server configuration (dev)
+  server: {
+    port: 3000,
+    open: false,
+    host: true,
+  },
 
-    esbuild: isProd ? { drop: ['console', 'debugger'] } : {},
+  // Preview server (production preview)
+  preview: {
+    port: 3000,
+    open: false,
+    host: true,
+  },
 
-    build: {
-      outDir: 'dist',
-      sourcemap: false,
-      rollupOptions: {
-        output: {
-          // Use function-based manualChunks to avoid SSR external module conflicts
-          manualChunks: (id) => {
-            // Only apply chunking for node_modules during client build
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'react-vendor';
-              }
-              if (id.includes('@mui/material') || id.includes('@mui/icons-material')) {
-                return 'mui-vendor';
-              }
-            }
-            return undefined;
-          }
-        }
-      },
-      chunkSizeWarningLimit: 600
-    },
+  optimizeDeps: {
+    include: ["react-cookie-consent"],
+  },
 
-    publicDir: 'public',
-
-    optimizeDeps: {
-      include: ['react', 'react-dom', '@mui/material']
-    },
-
-    ssr: {
-      noExternal: ['react-helmet-async', '@macolmenerori/component-library']
-    },
-
-    ssgOptions: {
-      formatting: 'minify'
-    }
-  };
+  // SSR configuration - handle CSS imports in component library
+  ssr: {
+    noExternal: ["@macolmenerori/component-library", "react-cookie-consent"],
+  },
 });

@@ -10,8 +10,9 @@
     "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedSideEffectImports": true,
     "outDir": "./dist/",
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -20,10 +21,10 @@
     "target": "ES2020",
     "strict": true,
     "paths": {
-      "@/*": ["./src/*"] // This allows imports like: import Button from '@/components/Button'
+      "@/*": ["./app/*"] // This allows imports like: import Button from '@/components/Button'
     },
-    "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom", "vite/client"]
+    "types": ["node", "react", "react-dom", "vitest/globals", "@testing-library/jest-dom"]
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "scripts/**/*.ts"]
+  "include": ["app/**/*.ts", "app/**/*.tsx", ".react-router/types/**/*.ts"]
 }

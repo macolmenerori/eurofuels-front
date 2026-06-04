@@ -9,6 +9,7 @@
 
 # production
 /dist
+/.react-router
 
 # misc
 .DS_Store
@@ -17,3 +18,4 @@
 .env.test.local
 .env.production.local
 .dccache
+.env

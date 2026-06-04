@@ -1,0 +1,137 @@
+[
+  {
+    "country": "Austria",
+    "gasoline": "1813",
+    "diesel": "1914"
+  },
+  {
+    "country": "Belgium",
+    "gasoline": "1888.77",
+    "diesel": "2111.86"
+  },
+  {
+    "country": "Bulgaria",
+    "gasoline": "1505.8",
+    "diesel": "1727.6"
+  },
+  {
+    "country": "Croatia",
+    "gasoline": "1696",
+    "diesel": "1816"
+  },
+  {
+    "country": "Cyprus",
+    "gasoline": "1564.03",
+    "diesel": "1817.73"
+  },
+  {
+    "country": "Czechia",
+    "gasoline": "1742.4859175198385",
+    "diesel": "1672.9986431478967"
+  },
+  {
+    "country": "Denmark",
+    "gasoline": "2338.993483467812",
+    "diesel": "2181.0980423641495"
+  },
+  {
+    "country": "Estonia",
+    "gasoline": "1788",
+    "diesel": "1818"
+  },
+  {
+    "country": "Finland",
+    "gasoline": "2025.3809523809525",
+    "diesel": "2140.0952380952376"
+  },
+  {
+    "country": "France",
+    "gasoline": "2082.6",
+    "diesel": "2118.44"
+  },
+  {
+    "country": "Germany",
+    "gasoline": "2043",
+    "diesel": "1972"
+  },
+  {
+    "country": "Greece",
+    "gasoline": "2119",
+    "diesel": "1815"
+  },
+  {
+    "country": "Hungary",
+    "gasoline": "1659.194483401739",
+    "diesel": "1726.984730995304"
+  },
+  {
+    "country": "Ireland",
+    "gasoline": "1825.7",
+    "diesel": "1949.5"
+  },
+  {
+    "country": "Italy",
+    "gasoline": "1936.82",
+    "diesel": "1982.73"
+  },
+  {
+    "country": "Latvia",
+    "gasoline": "1859.6",
+    "diesel": "1902.33"
+  },
+  {
+    "country": "Lithuania",
+    "gasoline": "1808.42",
+    "diesel": "1931.86"
+  },
+  {
+    "country": "Luxembourg",
+    "gasoline": "1824",
+    "diesel": "1815"
+  },
+  {
+    "country": "Malta",
+    "gasoline": "1340",
+    "diesel": "1210"
+  },
+  {
+    "country": "Netherlands",
+    "gasoline": "2388.04",
+    "diesel": "2284.71"
+  },
+  {
+    "country": "Poland",
+    "gasoline": "1489.8770710340602",
+    "diesel": "1576.4253692474424"
+  },
+  {
+    "country": "Portugal",
+    "gasoline": "2009",
+    "diesel": "1954"
+  },
+  {
+    "country": "Romania",
+    "gasoline": "1760.9786531521156",
+    "diesel": "1831.947323965292"
+  },
+  {
+    "country": "Slovakia",
+    "gasoline": "1776",
+    "diesel": "1710"
+  },
+  {
+    "country": "Slovenia",
+    "gasoline": "1690.02",
+    "diesel": "1744.22"
+  },
+  {
+    "country": "Spain",
+    "gasoline": "1547.5897730000002",
+    "diesel": "1685.241681"
+  },
+  {
+    "country": "Sweden",
+    "gasoline": "1715.9822774402776",
+    "diesel": "1896.3138902845658"
+  }
+]

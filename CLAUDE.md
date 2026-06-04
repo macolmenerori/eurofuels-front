@@ -1,206 +1,101 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Project
 
-## Project Overview
+EuroFuels — web app showing fuel prices across 27 EU member states. Map is the primary UI; everything else serves it. Desktop-first.
 
-**eurofuels-front** is a React web application that displays current fuel prices across European Union countries. The app fetches data from AWS S3 (populated by a Lambda function) and presents it in a responsive, internationalized interface with Material-UI components.
+## Stack
 
-Data source: [EU Weekly Oil Bulletin](https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en)
+- **React 19** + **TypeScript** (strict, `noImplicitAny`, `noUnusedLocals`)
+- **Vite 8** bundler — dev port 3000, no source maps in prod
+- **MUI v9** (`@mui/material`) + Emotion for styling — all styles via MUI `ThemeProvider`, no hardcoded hex values in components
+- **React Router v7** in framework mode — routes configured in `app/routes.ts`, page modules under `app/pages/`
+- **i18next** + `react-i18next` + `i18next-browser-languagedetector` for i18n
+- **SWR** for data fetching
+- **MSW** for API mocking in tests
+- **mapbox-gl v3** — map rendering. Import CSS in `root.tsx`: `import 'mapbox-gl/dist/mapbox-gl.css'`. Dynamic import inside `useEffect` to keep it out of the SSR eval graph (prerendering would crash on `window`).
+- **pnpm** as package manager (node ≥ 24.11.0)
+- **`@macolmenerori/component-library`** — internal component library; handle CSS imports via SSR `noExternal` config (already set in `vite.config.ts`). Each component subpackage ships its own CSS — import the CSS side-effect in `root.tsx` alongside fonts (e.g. `import '@macolmenerori/component-library/theme-switch-css'`). Import the component from its subpath: `import { ThemeSwitch } from '@macolmenerori/component-library/theme-switch'`.
+- **Version Injection**: The app version is read from `package.json` and injected at build time via Vite's `define` as `__APP_VERSION__`. Use this constant instead of hardcoding version strings.
 
-## Core Development Commands
+## Path aliases
 
-### Essential Commands
+`@/*` maps to `./app/*`. Use `@/components/Foo` not relative paths.
 
-```bash
-pnpm i                   # Install dependencies
-pnpm dev                 # Alias for pnpm start (SSG dev server)
-pnpm build               # Generate sitemap + TypeScript check + SSG build
-pnpm preview             # Preview SSG production build locally on port 3000
-pnpm test                # Run all Jest tests
-pnpm test <filename>     # Run specific test file
-pnpm types               # Type-check without emitting files
-pnpm lint                # Lint and auto-fix with ESLint
-pnpm prettify            # Format code with Prettier
-pnpm verify              # Run all checks: lint, prettify, types, test, audit, build
-```
-
-### Requirements
-
-- Node.js: `>=24.11.0`
-- Package manager: `pnpm>=10.12.1`
-
-## Architecture
-
-### Tech Stack
-
-- **Build System**: Vite 7 with React plugin and TypeScript support
-- **Framework**: React 19 with TypeScript
-- **Static Site Generation**: vite-react-ssg for pre-rendering and SEO
-- **UI Library**: Material-UI v7 (with Emotion for styling)
-- **Data Fetching**: SWR for caching and revalidation
-- **Internationalization**: react-i18next with browser language detection (SSR-compatible)
-- **SEO**: react-helmet-async for meta tags and structured data
-- **Testing**: Jest + Testing Library + MSW (Mock Service Worker)
-
-### Project Structure
+## App structure (target)
 
 ```
-src/
-├── components/          # React components (each in own folder with tests)
-│   ├── PricesTable/    # Main data display component
-│   ├── SEOHead/        # SEO meta tags and structured data
-│   ├── Navbar/
-│   ├── LanguageSwitcher/
-│   ├── ThemeToggle/
-│   └── ...
-├── ui/
-│   ├── MainLayout/     # Main layout wrapper (includes SEO components)
-│   └── theme/          # MUI theme configuration and ThemeContext
-├── test/
-│   ├── mocks/          # MSW handlers for API mocking
-│   └── setupTests.tsx  # Jest setup file
-├── types/              # TypeScript type definitions
-├── i18n.ts            # i18next configuration (with SSR guards)
-└── index.tsx          # SSG entry point (ViteReactSSG)
-scripts/
-└── generate-sitemap.ts # Automatic sitemap generation for SEO
-public/
-├── locales/            # Translation files
-├── robots.txt          # Search engine crawler directives
-└── sitemap.xml         # Auto-generated sitemap (via build script)
+app/
+  pages/           # React Router v7 file-based routes
+  components/      # shared UI components
+  ui/              # MUI theme config (light + dark)
+  i18n/
+    index.ts       # side-effect init module (imported in root.tsx)
+    i18next.d.ts   # TS module augmentation — t() keys typed against en.json
+    locales/       # Translation files
+  hooks/           # custom React hooks
+  lib/             # utilities, API clients
+  root.tsx         # app root (ThemeProvider, RouterProvider, i18n init)
+public/            # static assets
 ```
 
-### Key Architectural Patterns
+## Design system (from DESIGN.md)
 
-**1. Data Fetching (PricesTable.tsx)**
+Read `DESIGN.md` for the full spec. Key rules:
 
-- Uses SWR to fetch JSON data from AWS S3 bucket
-- API endpoint: `https://eurofuels-bucket.s3.eu-west-1.amazonaws.com/eurofuels_data.json`
-- Returns stringified JSON that must be parsed with `JSON.parse()`
-- Component handles loading, error, and success states
+**Colors**
 
-**2. Theme Management (ui/theme/)**
+- Never hardcode hex values — always read from MUI theme.
+- Dark theme is the **default** for first-time users; persist choice to `localStorage` key `eurofuel:theme`.
 
-- Custom ThemeContext wraps MUI ThemeProvider
-- Persists theme preference to localStorage (with SSR guards)
-- Responds to system theme changes when no explicit preference set
-- Defaults to 'light' theme during SSG, switches after client hydration
-- Access via `useTheme()` hook
+**Typography**
 
-**3. Static Site Generation & SEO**
+- **Manrope** for all UI text. Loaded via Fontsource variable package `@fontsource-variable/manrope` (imported in `app/root.tsx`); CSS family `"Manrope Variable"`.
+- **JetBrains Mono** for every numeral — prices, ISO codes, language codes. CSS family `"JetBrains Mono Variable"`. Always with `font-variant-numeric: tabular-nums`. Never use a proportional font for numbers.
 
-- Entry point uses `ViteReactSSG` for static pre-rendering
-- SSR-compatible with guards for browser-only APIs (`window`, `localStorage`)
-- SEO components in `src/components/SEOHead/`:
-  - `SEOHead.tsx`: Meta tags, Open Graph, Twitter Cards, canonical URLs
-  - `JsonLd.tsx`: Structured data (WebApplication schema)
-- Automatic sitemap generation before each build (`scripts/generate-sitemap.ts`)
-- Pre-rendered HTML improves SEO and perceived performance
+**Layout**
 
-**4. Internationalization**
+- Fixed viewport, no scroll: `height: 100vh; overflow: hidden`.
+- Navbar 64px fixed; map area `flex: 1`.
 
-- Translation files: `public/locales/{en,es}.json`
-- Configured in `src/i18n.ts` with automatic language detection
-- SSR guards prevent browser-only `LanguageDetector` from running during build
-- Defaults to English during SSG, switches to browser preference after hydration
-- Access translations via `useTranslation()` hook from react-i18next
+**Motion**
 
-**5. Import Paths**
+- Transitions 120–280ms, `ease` curves only. Max 320ms. No springs/bounces.
+- Wrap all keyframe animations in `@media (prefers-reduced-motion: reduce)`.
+- Three named keyframes: `ef-fadein` (160ms, dropdowns), `ef-pop` (140ms, tooltip), `ef-shimmer` (1.6s, skeleton).
 
-- Aliased paths configured: `@/*` maps to `src/*`
-- Works in both TypeScript (tsconfig.json) and Vite (vite.config.ts via vite-tsconfig-paths plugin)
-- Example: `import { MainLayout } from '@/ui/MainLayout/MainLayout'`
+**Theme swap**: transitions `background-color` and `color` on root over 280ms.
 
-**6. Component Organization**
+## Theming
 
-- Each component in its own folder with co-located test file
-- Test files use `.test.tsx` suffix
-- Components export default, but some use named exports (e.g., MainLayout)
+Theme lives in `app/ui/`:
 
-### Testing Setup
+- **`theme.ts`** — `createAppTheme(mode)` factory builds both light/dark themes from one source. Full DESIGN.md token set encoded (hybrid placement):
+  - `theme.ef` — custom namespace for tokens with no MUI home: `surfaceElevated`, `borderStrong`, `primaryFaded`, `primaryGlow`, `map.{fill,stroke,scale.{low,mid,high}}`, `dotPattern`, `radii`, `shadows.{sm,lg,glowHover}`. `map.scale` holds the choropleth color ramp (green→amber→red); differs between light and dark themes.
+  - TS module augmentation in the same file keeps `theme.ef`, `palette.accent`, and custom variants typed.
+- **`ThemeModeProvider.tsx`** — holds active mode, wraps MUI `ThemeProvider` + `CssBaseline` + foundational `GlobalStyles` (viewport lock, 280ms theme-swap, reduced-motion guard). Mode defaults to `dark`, persisted to `localStorage['eurofuel:theme']`. Consume via `useThemeMode()` → `{ mode, setMode, toggleMode }` (throws outside provider). Read theme tokens via MUI's own `useTheme()`.
 
-- **Environment**: `jest-fixed-jsdom` (for React 19 compatibility)
-- **MSW**: Mock API responses in `src/test/mocks/handlers.ts`
-- **Setup**: Global test setup in `src/test/setupTests.tsx`
-- **Coverage**: Configured to exclude `*.d.ts` and `index.tsx`
-- Import alias `@/*` mapped in jest.config.ts
-- Always try to use userEvent instead of fireEvent on tests when performing user actions
-- **Important**: `transformIgnorePatterns` configured to transform `.pnpm` directory for pnpm's symlink structure (required for msw and its dependencies like until-async)
+## i18n
 
-### Linting and Formatting
+Supported languages: EN (default/fallback) and ES. Translations live under `app/i18n/locales/`.
 
-- **ESLint**: TypeScript-ESLint with React, Hooks, JSX A11y, Testing Library plugins
-- **Import Sorting**: `simple-import-sort` enforces React-first, then external, then internal imports
-- **Prettier**: Integrated as ESLint rule (errors on formatting issues)
-- Notable rules:
-  - `@typescript-eslint/no-explicit-any`: warn
-  - `no-console`: warn
-  - `react/prop-types`: off (TypeScript handles this)
+- Key shape: nested by area — `common`, `nav`, `map`, `stats`, `about`, `notFound`. `en.json` is the canonical key set; always add keys there first.
+- Use `useTranslation` hook in components; never hardcode user-visible strings.
 
-### Build Configuration (vite.config.ts)
+## Routing notes
 
-- **SSG Configuration**: `vite-react-ssg` for static site generation
-- **SSR Externals**: `react-helmet-async` configured as SSR-compatible
-- **SSG Options**: HTML minification enabled for production
-- Production builds use content hashing for cache busting
-- CSS extraction in production (Vite handles automatically)
-- Console logs removed in production builds via terser
-- Dev server on port 3000 with fast HMR
-- Preview server on port 3000 for testing SSG production builds
-- Static assets served from `public/` directory (Vite automatic handling)
-- Build output directory: `dist/` (Vite default)
-- Path alias `@` configured via vite-tsconfig-paths plugin
-- Function-based manual code splitting: react-vendor and mui-vendor chunks (SSR-compatible)
-- PostCSS with autoprefixer and postcss-preset-env for CSS processing
-- Build process: Sitemap generation → TypeScript check → SSG build
+- The root `/` route uses `<NavLink to="/" end>` — the `end` prop is required to prevent it matching as active on every nested route.
 
-## Key Implementation Details
+## Static assets
 
-### Adding New Translations
+- `public/data/eu_boundaries.json` — GeoJSON `FeatureCollection` of EU country boundaries.
 
-1. Add key-value pairs to `public/locales/en.json` and `public/locales/es.json`
-2. Access in components via: `const { t } = useTranslation(); t('your.key.path')`
+## Testing
 
-### Adding New Tests
+- MSW fully wired: `app/test/mocks/handlers.ts` intercepts `VITE_COUNTRY_DATA_ENDPOINT`, `app/test/mocks/server.ts` exports the MSW node server. Setup in `app/test/setup.ts`: server started `beforeAll`, reset `afterEach`, closed `afterAll`.
+- SWR cache isolated per render: `test-utils.tsx` wraps renders in `<SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0, shouldRetryOnError: false }}>`. SWR global cache also purged via `mutate()` in `afterEach`.
+- **mapbox-gl in tests**: requires WebGL + DOM APIs absent in jsdom — always mock the entire module with `vi.mock('mapbox-gl', ...)`. Also stub `fetch` to prevent real GeoJSON network calls. See `MapDisplayComponent.test.tsx` for the canonical mock shape.
 
-- MSW handlers in `src/test/mocks/handlers.ts` intercept fetch requests
-- Mock API responses for consistent test data
-- Test files automatically discovered by Jest (pattern: `*.test.tsx`)
+## TypeScript notes
 
-### Theme Customization
-
-- Theme definition in `src/ui/theme/theme.ts`
-- `createAppTheme(mode)` function creates MUI theme with light/dark variants
-- ThemeContext provides `mode` and `toggleTheme()` to all components
-
-### SEO and Static Site Generation
-
-**Meta Tags and Structured Data:**
-
-- `SEOHead` component manages all meta tags dynamically
-- Supports multilingual meta tags (en/es)
-- Open Graph tags for social media sharing
-- Twitter Card tags for Twitter previews
-- Canonical URLs to prevent duplicate content
-- JSON-LD structured data (WebApplication schema)
-
-**Sitemap:**
-
-- Auto-generated before each build via `tsx scripts/generate-sitemap.ts`
-- Includes multilingual support (hreflang tags)
-- Weekly change frequency (matches data update schedule)
-- Production URL: `https://eurofuels.miguelangelcolmenero.es`
-
-**SSR Compatibility:**
-
-- All browser-only APIs guarded with `typeof window !== 'undefined'`
-- Theme and language preferences set after client hydration
-- SWR data fetching happens client-side only
-- Pre-rendered HTML provides immediate content visibility
-
-**robots.txt:**
-
-- Allows all search engine crawlers
-- References sitemap location
-- Blocks build artifacts and node_modules
+- `__APP_VERSION__` global is injected by Vite from `package.json`.

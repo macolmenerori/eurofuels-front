@@ -1,0 +1,64 @@
+{
+  "about": {
+    "credit": {
+      "author": "Miguel Colmenero",
+      "madeBy": "Made by",
+      "sourceCode": "Source code"
+    },
+    "data": {
+      "body": "Prices are gathered automatically from public sources and updated regularly. The data pipeline is open source — see the backend repository for how it works.",
+      "heading": "Where the data comes from",
+      "repoLink": "Backend repository"
+    },
+    "project": {
+      "body": "EuroFuels shows current fuel prices across the 27 EU member states. Pick a country on the map to see its prices, or open the stats view to compare them all at a glance.",
+      "heading": "About this project"
+    },
+    "title": "About"
+  },
+  "common": {
+    "appName": "EuroFuels"
+  },
+  "cookies": {
+    "accept": "Accept",
+    "decline": "Decline",
+    "message": "This website uses cookies to enhance the user experience. By clicking 'Accept', you consent to the use of cookies. You can decline the use of cookies by clicking 'Decline'."
+  },
+  "map": {
+    "diesel": "Diesel",
+    "error": "Error loading map",
+    "errorTitle": "Something went wrong",
+    "gasoline": "Petrol",
+    "loading": "Loading...",
+    "title": "Map",
+    "unit": "€/1000 L"
+  },
+  "nav": {
+    "about": "About",
+    "map": "Map",
+    "openMenu": "Open menu",
+    "stats": "Stats"
+  },
+  "notFound": {
+    "title": "404 – Page Not Found"
+  },
+  "stats": {
+    "error": "Error fetching data",
+    "errorTitle": "Something went wrong",
+    "loading": "Loading...",
+    "pricesStats": {
+      "pricesAverages": {
+        "average": "Average"
+      },
+      "pricesTable": {
+        "title": "Prices by Country"
+      }
+    },
+    "table": {
+      "country": "Country",
+      "diesel": "Diesel (€/1000 L)",
+      "petrol": "Petrol (€/1000 L)"
+    },
+    "title": "Fuel Prices Stats in the EU"
+  }
+}

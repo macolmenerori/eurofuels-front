@@ -26,9 +26,8 @@ updates:
           - '@mui/*'
       testing-ecosystem:
         patterns:
-          - 'jest*'
+          - 'vitest*'
           - '@testing-library/*'
-          - '@types/jest'
       build-tools:
         patterns:
           - 'vite*'

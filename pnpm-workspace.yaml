@@ -1,6 +1,5 @@
 allowBuilds:
   esbuild: true
   msw: true
-  unrs-resolver: true
-overrides:
-  yaml: "2.8.3"
+minimumReleaseAgeExclude:
+  - i18next@26.3.1
