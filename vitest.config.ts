@@ -38,8 +38,11 @@ export default defineConfig({
     // Mirror the production Vite global so components that read it don't throw.
     __APP_VERSION__: JSON.stringify(pkg.version),
     // Expose VITE_* env vars so import.meta.env.VITE_* resolves in test files.
+    // Fall back to a deterministic placeholder when .env is absent (e.g. CI) —
+    // the value is arbitrary; MSW intercepts the same constant, so any non-empty
+    // string makes the handler match.
     'import.meta.env.VITE_COUNTRY_DATA_ENDPOINT': JSON.stringify(
-      dotenv.VITE_COUNTRY_DATA_ENDPOINT ?? ''
+      dotenv.VITE_COUNTRY_DATA_ENDPOINT || 'http://localhost/test/country-data.json'
     )
   },
 
