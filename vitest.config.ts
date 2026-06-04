@@ -1,6 +1,5 @@
 import react from '@vitejs/plugin-react';
 import { readFileSync } from 'node:fs';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
@@ -29,8 +28,11 @@ const dotenv = parseEnvFile('.env');
 export default defineConfig({
   plugins: [
     react(),
-    tsconfigPaths() // wires @/* alias from tsconfig.json paths
   ],
+
+  resolve: {
+    tsconfigPaths: true, // wires @/* alias from tsconfig.json paths (native Vite 8)
+  },
 
   define: {
     // Mirror the production Vite global so components that read it don't throw.
