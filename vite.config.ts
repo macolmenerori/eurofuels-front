@@ -41,8 +41,12 @@ export default defineConfig({
     host: true,
   },
 
+  optimizeDeps: {
+    include: ["react-cookie-consent"],
+  },
+
   // SSR configuration - handle CSS imports in component library
   ssr: {
-    noExternal: ["@macolmenerori/component-library"],
+    noExternal: ["@macolmenerori/component-library", "react-cookie-consent"],
   },
 });

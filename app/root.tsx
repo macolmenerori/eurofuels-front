@@ -8,6 +8,7 @@ import '@/i18n';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import { CustomCookieConsent } from '@/components/CustomCookieConsent/CustomCookieConsent';
 import { ThemeModeProvider } from '@/ui/ThemeModeProvider';
 
 export function Layout({ children }: { children: React.ReactNode }): React.JSX.Element {
@@ -32,6 +33,7 @@ export default function App(): React.JSX.Element {
   return (
     <ThemeModeProvider>
       <Outlet />
+      <CustomCookieConsent />
     </ThemeModeProvider>
   );
 }

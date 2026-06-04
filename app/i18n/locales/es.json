@@ -19,6 +19,11 @@
   "common": {
     "appName": "EuroFuels"
   },
+  "cookies": {
+    "accept": "Aceptar",
+    "decline": "Rechazar",
+    "message": "Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al hacer clic en 'Aceptar', das tu consentimiento para el uso de cookies. Puedes rechazar el uso de cookies haciendo clic en 'Rechazar'."
+  },
   "map": {
     "diesel": "Diésel",
     "error": "Error al cargar el mapa",

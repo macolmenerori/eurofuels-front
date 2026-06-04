@@ -27,7 +27,7 @@ describe('AboutPage', () => {
 
     it('renders the author link with correct href and target', () => {
       render(<AboutPage />);
-      const link = screen.getByRole('link', { name: 'Miguel Ángel Colmenero' });
+      const link = screen.getByRole('link', { name: 'Miguel Colmenero' });
       expect(link).toHaveAttribute('href', 'https://miguelangelcolmenero.es');
       expect(link).toHaveAttribute('target', '_blank');
     });
