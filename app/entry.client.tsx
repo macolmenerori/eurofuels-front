@@ -2,6 +2,8 @@ import { startTransition, StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { HydratedRouter } from 'react-router/dom';
 
+import { initDatadogRum } from '@/lib/datadog';
+
 startTransition(() => {
   hydrateRoot(
     document,
@@ -10,6 +12,10 @@ startTransition(() => {
     </StrictMode>
   );
 });
+
+if (import.meta.env.PROD) {
+  initDatadogRum();
+}
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {

@@ -16,6 +16,7 @@ EuroFuels — web app showing fuel prices across 27 EU member states. Map is the
 - **mapbox-gl v3** — map rendering. Import CSS in `root.tsx`: `import 'mapbox-gl/dist/mapbox-gl.css'`. Dynamic import inside `useEffect` to keep it out of the SSR eval graph (prerendering would crash on `window`).
 - **pnpm** as package manager (node ≥ 24.11.0)
 - **`@macolmenerori/component-library`** — internal component library; handle CSS imports via SSR `noExternal` config (already set in `vite.config.ts`). Each component subpackage ships its own CSS — import the CSS side-effect in `root.tsx` alongside fonts (e.g. `import '@macolmenerori/component-library/theme-switch-css'`). Import the component from its subpath: `import { ThemeSwitch } from '@macolmenerori/component-library/theme-switch'`.
+- **Version Injection**: The app version is read from `package.json` and injected at build time via Vite's `define` as `__APP_VERSION__`. Use this constant instead of hardcoding version strings.
 
 ## Path aliases
 
