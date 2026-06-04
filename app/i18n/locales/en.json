@@ -1,5 +1,19 @@
 {
   "about": {
+    "credit": {
+      "author": "Miguel Colmenero",
+      "madeBy": "Made by",
+      "sourceCode": "Source code"
+    },
+    "data": {
+      "body": "Prices are gathered automatically from public sources and updated regularly. The data pipeline is open source — see the backend repository for how it works.",
+      "heading": "Where the data comes from",
+      "repoLink": "Backend repository"
+    },
+    "project": {
+      "body": "EuroFuels shows current fuel prices across the 27 EU member states. Pick a country on the map to see its prices, or open the stats view to compare them all at a glance.",
+      "heading": "About this project"
+    },
     "title": "About"
   },
   "common": {

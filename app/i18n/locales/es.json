@@ -1,5 +1,19 @@
 {
   "about": {
+    "credit": {
+      "author": "Miguel Colmenero",
+      "madeBy": "Hecho por",
+      "sourceCode": "Código fuente"
+    },
+    "data": {
+      "body": "Los precios se recopilan automáticamente de fuentes públicas y se actualizan con regularidad. El proceso de obtención de datos es de código abierto — consulta el repositorio del backend para ver cómo funciona.",
+      "heading": "De dónde vienen los datos",
+      "repoLink": "Repositorio del backend"
+    },
+    "project": {
+      "body": "EuroFuels muestra los precios actuales de los combustibles en los 27 estados miembros de la UE. Elige un país en el mapa para ver sus precios, o abre la vista de estadísticas para compararlos todos de un vistazo.",
+      "heading": "Sobre este proyecto"
+    },
     "title": "Acerca de"
   },
   "common": {
