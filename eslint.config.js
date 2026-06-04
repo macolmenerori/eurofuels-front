@@ -1,3 +1,5 @@
+import reactPkg from 'react/package.json' with { type: 'json' };
+
 import eslint from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
@@ -57,7 +59,7 @@ export default tseslint.config(
     },
     settings: {
       react: {
-        version: 'detect'
+        version: reactPkg.version
       }
     },
     languageOptions: {
