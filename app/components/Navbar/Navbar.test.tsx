@@ -12,6 +12,13 @@ describe('Navbar', () => {
     expect(screen.getByText('Fuels')).toBeInTheDocument();
   });
 
+  it('renders the brand logo', () => {
+    render(<Navbar />);
+    const logo = screen.getByRole('img', { name: /eurofuels logo/i });
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveAttribute('src', '/icons/favicon.webp');
+  });
+
   it('renders all nav links with EN translations (desktop)', () => {
     render(<Navbar />);
     // Desktop nav links — multiple matches expected (desktop + menu), use getAllByRole

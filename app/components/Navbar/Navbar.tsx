@@ -75,28 +75,37 @@ export function Navbar(): React.JSX.Element {
           end
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: '2px',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '12px',
             textDecoration: 'none',
             '&:hover': { opacity: 0.85 },
             transition: 'opacity 160ms ease'
           }}
         >
-          <Typography variant="brandWordmark" component="span">
-            <Box component="span" sx={{ color: 'text.primary' }}>
-              Euro
-            </Box>
-            <Box component="span" sx={{ color: 'accent.main' }}>
-              Fuels
-            </Box>
-          </Typography>
-          <Typography
-            variant="brandTagline"
-            component="span"
-            sx={{ color: 'text.disabled', textTransform: 'uppercase', letterSpacing: '0.06em' }}
-          >
-            EU PRICE TRACKER
-          </Typography>
+          <Box
+            component="img"
+            src="/icons/favicon.webp"
+            alt="EuroFuels logo"
+            sx={{ width: 40, height: 40, flexShrink: 0, display: 'block' }}
+          />
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <Typography variant="brandWordmark" component="span">
+              <Box component="span" sx={{ color: 'text.primary' }}>
+                Euro
+              </Box>
+              <Box component="span" sx={{ color: 'accent.main' }}>
+                Fuels
+              </Box>
+            </Typography>
+            <Typography
+              variant="brandTagline"
+              component="span"
+              sx={{ color: 'text.disabled', textTransform: 'uppercase', letterSpacing: '0.06em' }}
+            >
+              EU PRICE TRACKER
+            </Typography>
+          </Box>
         </Box>
 
         {/* Desktop region — hidden below sm */}
