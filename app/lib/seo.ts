@@ -19,6 +19,9 @@ export function buildMeta({
     { property: 'og:site_name', content: 'EuroFuels' },
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
-    { property: 'og:url', content: SITE_URL + path }
+    { property: 'og:url', content: SITE_URL + path },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description }
   ];
 }
