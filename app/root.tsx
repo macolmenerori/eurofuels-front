@@ -20,7 +20,7 @@ export function Layout({ children }: { children: React.ReactNode }): React.JSX.E
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#111f31" />
         <link rel="icon" href="/icons/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+        <link rel="icon" type="image/webp" href="/icons/favicon.webp" />
         <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <Meta />

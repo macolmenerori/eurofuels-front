@@ -31,6 +31,7 @@
     "error": "Error al cargar el mapa",
     "errorTitle": "Algo salió mal",
     "gasoline": "Gasolina",
+    "h1": "EuroFuels – Mapa de precios de combustible de la UE",
     "loading": "Cargando...",
     "title": "Mapa",
     "unit": "€/1000 L"

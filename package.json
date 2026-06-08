@@ -11,7 +11,8 @@
   "packageManager": "pnpm@11.5.2",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build",
+    "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "build": "pnpm generate:sitemap && react-router build",
     "lint": "eslint --fix --no-error-on-unmatched-pattern ./app/",
     "prettify": "prettier -w --log-level=silent app/ || true",
     "test": "vitest run",

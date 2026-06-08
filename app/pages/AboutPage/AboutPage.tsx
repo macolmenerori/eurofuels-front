@@ -5,14 +5,18 @@ import type { MetaFunction } from 'react-router';
 import { Box, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
+import { buildMeta } from '@/lib/seo';
+
 const BACKEND_REPO_URL = 'https://github.com/macolmenerori/eurofuels-back';
 const FRONTEND_REPO_URL = 'https://github.com/macolmenerori/eurofuels-front';
 const AUTHOR_URL = 'https://miguelangelcolmenero.es';
 
-export const meta: MetaFunction = () => [
-  { title: 'About – EuroFuels' },
-  { name: 'description', content: 'About the EuroFuels project.' }
-];
+export const meta: MetaFunction = () =>
+  buildMeta({
+    path: '/about',
+    title: 'About – EuroFuels',
+    description: 'About the EuroFuels project.'
+  });
 
 export default function AboutPage(): React.JSX.Element {
   const { t } = useTranslation();
