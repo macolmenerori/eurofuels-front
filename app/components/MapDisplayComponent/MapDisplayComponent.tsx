@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import type { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MapboxMap } from 'mapbox-gl';
@@ -9,6 +11,9 @@ import MapLegend from './MapLegend/MapLegend';
 import { buildFillColor, getPriceDomain, mergePrices } from './mapColor';
 import { buildPriceLookup, computeFlip } from './tooltipHelpers';
 
+import { StatusCard } from '@/components/StatusCard/StatusCard';
+import { fetcher } from '@/lib/fetcher';
+import { formatPrice } from '@/lib/format';
 import type { CountryPriceWithIso } from '@/lib/types';
 import { useThemeMode } from '@/ui/ThemeModeProvider';
 
@@ -37,6 +42,7 @@ interface HoverState {
 }
 
 export default function MapDisplayComponent({ data }: MapDisplayComponentProps): React.JSX.Element {
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const { mode } = useThemeMode();
 
@@ -49,6 +55,9 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
   const dataRef = useRef(data);
   const modeRef = useRef(mode);
   const themeRef = useRef(theme);
+
+  // ─── Init error state ────────────────────────────────────────────────────────
+  const [initError, setInitError] = useState(false);
 
   // ─── Tooltip state ───────────────────────────────────────────────────────────
   const [hoverState, setHoverState] = useState<HoverState | null>(null);
@@ -109,101 +118,106 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
     }
 
     void (async () => {
-      const [{ default: mapboxgl }, rawGeojson] = await Promise.all([
-        import('mapbox-gl'),
-        fetch('/data/eu_boundaries.json').then(
-          (r) => r.json() as Promise<FeatureCollection<Geometry, GeoJsonProperties>>
-        )
-      ]);
+      try {
+        const [{ default: mapboxgl }, rawGeojson] = await Promise.all([
+          import('mapbox-gl'),
+          fetcher<FeatureCollection<Geometry, GeoJsonProperties>>('/data/eu_boundaries.json')
+        ]);
 
-      if (cancelled || !containerRef.current) return;
+        if (cancelled || !containerRef.current) return;
 
-      geojsonRef.current = rawGeojson;
-      mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+        geojsonRef.current = rawGeojson;
+        mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
-      const map = new mapboxgl.Map({
-        container: containerRef.current,
-        style: getStyleUrl(modeRef.current),
-        minZoom: 2,
-        maxZoom: 10,
-        maxBounds: [
-          [-50, 20],
-          [70, 80]
-        ],
-        dragRotate: false,
-        pitchWithRotate: false,
-        touchPitch: false
-      });
-
-      // 'style.load' fires after every style load (initial + setStyle calls).
-      // Re-add source and layers each time so theme swaps don't wipe them.
-      map.on('style.load', () => {
-        addEuLayers(map);
-      });
-
-      mapRef.current = map;
-      mapInstance = map;
-
-      // ─── Hover / touch tooltip handlers ─────────────────────────────────────
-      // Bind once at mount; layer-scoped listeners fire whenever the 'eu-fill'
-      // layer is present (re-added after every setStyle theme swap by the
-      // style.load handler above). Gate by pointer capability so touch devices
-      // use click instead of mousemove, avoiding stuck "ghost" tooltips.
-      const coarse = window.matchMedia('(hover: none)').matches;
-
-      if (!coarse) {
-        // Desktop / fine-pointer: tooltip follows cursor.
-        map.on('mousemove', 'eu-fill', (e) => {
-          const feature = e.features?.[0];
-          if (!feature) return;
-          const iso = feature.properties?.ISO_A2 as string | undefined;
-          const name = feature.properties?.NAME as string | undefined;
-          if (!iso || !name) return;
-          const containerW = containerRef.current?.offsetWidth ?? 0;
-          const containerH = containerRef.current?.offsetHeight ?? 0;
-          const { flipX, flipY } = computeFlip(e.point.x, e.point.y, containerW, containerH);
-          const state: HoverState = { iso, name, x: e.point.x, y: e.point.y, flipX, flipY };
-          hoverStateRef.current = state;
-          setHoverState(state);
-          map.getCanvas().style.cursor = 'pointer';
+        const map = new mapboxgl.Map({
+          container: containerRef.current,
+          style: getStyleUrl(modeRef.current),
+          minZoom: 2,
+          maxZoom: 10,
+          maxBounds: [
+            [-50, 20],
+            [70, 80]
+          ],
+          dragRotate: false,
+          pitchWithRotate: false,
+          touchPitch: false
         });
-        map.on('mouseleave', 'eu-fill', () => {
-          hoverStateRef.current = null;
-          setHoverState(null);
-          map.getCanvas().style.cursor = '';
+
+        // 'style.load' fires after every style load (initial + setStyle calls).
+        // Re-add source and layers each time so theme swaps don't wipe them.
+        map.on('style.load', () => {
+          addEuLayers(map);
         });
-      } else {
-        // Touch / coarse-pointer: tap to show/swap; tap empty or same to dismiss.
-        map.on('click', (e) => {
-          const features = map.queryRenderedFeatures(e.point, { layers: ['eu-fill'] });
-          const feature = features[0];
-          if (feature) {
+
+        mapRef.current = map;
+        mapInstance = map;
+
+        // ─── Hover / touch tooltip handlers ─────────────────────────────────────
+        // Bind once at mount; layer-scoped listeners fire whenever the 'eu-fill'
+        // layer is present (re-added after every setStyle theme swap by the
+        // style.load handler above). Gate by pointer capability so touch devices
+        // use click instead of mousemove, avoiding stuck "ghost" tooltips.
+        const coarse = window.matchMedia('(hover: none)').matches;
+
+        if (!coarse) {
+          // Desktop / fine-pointer: tooltip follows cursor.
+          map.on('mousemove', 'eu-fill', (e) => {
+            const feature = e.features?.[0];
+            if (!feature) return;
             const iso = feature.properties?.ISO_A2 as string | undefined;
             const name = feature.properties?.NAME as string | undefined;
             if (!iso || !name) return;
-            // Tap same country again → dismiss.
-            if (hoverStateRef.current?.iso === iso) {
-              hoverStateRef.current = null;
-              setHoverState(null);
-              return;
-            }
             const containerW = containerRef.current?.offsetWidth ?? 0;
             const containerH = containerRef.current?.offsetHeight ?? 0;
             const { flipX, flipY } = computeFlip(e.point.x, e.point.y, containerW, containerH);
             const state: HoverState = { iso, name, x: e.point.x, y: e.point.y, flipX, flipY };
             hoverStateRef.current = state;
             setHoverState(state);
-          } else {
+            map.getCanvas().style.cursor = 'pointer';
+          });
+          map.on('mouseleave', 'eu-fill', () => {
             hoverStateRef.current = null;
             setHoverState(null);
-          }
-        });
-      }
+            map.getCanvas().style.cursor = '';
+          });
+        } else {
+          // Touch / coarse-pointer: tap to show/swap; tap empty or same to dismiss.
+          map.on('click', (e) => {
+            const features = map.queryRenderedFeatures(e.point, { layers: ['eu-fill'] });
+            const feature = features[0];
+            if (feature) {
+              const iso = feature.properties?.ISO_A2 as string | undefined;
+              const name = feature.properties?.NAME as string | undefined;
+              if (!iso || !name) return;
+              // Tap same country again → dismiss.
+              if (hoverStateRef.current?.iso === iso) {
+                hoverStateRef.current = null;
+                setHoverState(null);
+                return;
+              }
+              const containerW = containerRef.current?.offsetWidth ?? 0;
+              const containerH = containerRef.current?.offsetHeight ?? 0;
+              const { flipX, flipY } = computeFlip(e.point.x, e.point.y, containerW, containerH);
+              const state: HoverState = { iso, name, x: e.point.x, y: e.point.y, flipX, flipY };
+              hoverStateRef.current = state;
+              setHoverState(state);
+            } else {
+              hoverStateRef.current = null;
+              setHoverState(null);
+            }
+          });
+        }
 
-      resizeObserver = new ResizeObserver(() => {
-        map.resize();
-      });
-      resizeObserver.observe(containerRef.current!);
+        resizeObserver = new ResizeObserver(() => {
+          map.resize();
+        });
+        resizeObserver.observe(containerRef.current!);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (err) {
+        if (!cancelled) {
+          setInitError(true);
+        }
+      }
     })();
 
     return () => {
@@ -249,8 +263,17 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
 
   const tooltipRow = hoverState !== null ? lookup.get(hoverState.iso) : null;
 
+  if (initError) {
+    return <StatusCard status="error" title={t('map.errorTitle')} message={t('map.error')} />;
+  }
+
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div
+      ref={containerRef}
+      role="img"
+      aria-label={t('map.ariaLabel')}
+      style={{ width: '100%', height: '100%', position: 'relative' }}
+    >
       {hoverState !== null && (
         <CountryTooltip
           name={tooltipRow?.country ?? hoverState.name}
@@ -262,6 +285,27 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
           flipY={hoverState.flipY}
         />
       )}
+      {/* Visually hidden — announced to screen readers when hovered country changes */}
+      <Box
+        aria-live="polite"
+        aria-atomic="true"
+        sx={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden',
+          clip: 'rect(0 0 0 0)',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        {hoverState && tooltipRow
+          ? t('map.announce', {
+              country: tooltipRow.country,
+              gasoline: formatPrice(tooltipRow.gasoline, i18n.language),
+              diesel: formatPrice(tooltipRow.diesel, i18n.language)
+            })
+          : ''}
+      </Box>
       {domain && <MapLegend domain={domain} />}
     </div>
   );

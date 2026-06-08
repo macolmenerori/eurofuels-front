@@ -1,7 +1,7 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { CountryPriceWithIso } from '@/lib/types';
-import { render, screen } from '@/test/test-utils';
+import { render, screen, waitFor } from '@/test/test-utils';
 
 // mapbox-gl requires WebGL and DOM APIs unavailable in jsdom. Mock the entire
 // module so the component mounts without throwing.
@@ -22,15 +22,24 @@ vi.mock('mapbox-gl', () => {
   return { default: { Map, accessToken: '' } };
 });
 
-// Prevent actual fetch calls for the geojson file during tests.
-vi.stubGlobal(
-  'fetch',
-  vi.fn(() =>
+// Default fetch stub: successful GeoJSON response.
+const fetchMock = vi.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({ type: 'FeatureCollection', features: [] })
+  })
+);
+
+vi.stubGlobal('fetch', fetchMock);
+
+beforeEach(() => {
+  fetchMock.mockImplementation(() =>
     Promise.resolve({
+      ok: true,
       json: () => Promise.resolve({ type: 'FeatureCollection', features: [] })
     })
-  )
-);
+  );
+});
 
 // Static import — vi.mock is hoisted above imports so the mock is in place.
 import MapDisplayComponent from './MapDisplayComponent';
@@ -46,6 +55,19 @@ describe('MapDisplayComponent', () => {
     expect(container.querySelector('div')).toBeTruthy();
   });
 
+  it('map container has role="img" and an aria-label', () => {
+    const { container } = render(<MapDisplayComponent data={mockData} />);
+    const mapDiv = container.querySelector('div[role="img"]');
+    expect(mapDiv).toBeTruthy();
+    expect(mapDiv?.getAttribute('aria-label')).toBeTruthy();
+  });
+
+  it('renders a visually-hidden aria-live region', () => {
+    const { container } = render(<MapDisplayComponent data={mockData} />);
+    const liveRegion = container.querySelector('[aria-live="polite"][aria-atomic="true"]');
+    expect(liveRegion).toBeTruthy();
+  });
+
   it('renders the legend unit text when valid data is supplied', () => {
     render(<MapDisplayComponent data={mockData} />);
     // MapLegend is visible when getPriceDomain returns a non-null domain.
@@ -55,5 +77,31 @@ describe('MapDisplayComponent', () => {
   it('renders no legend when data has no valid prices', () => {
     render(<MapDisplayComponent data={[]} />);
     expect(screen.queryByText('€/1000 L')).toBeNull();
+  });
+
+  it('shows error StatusCard when boundaries fetch returns a non-ok response', async () => {
+    fetchMock.mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        status: 404,
+        json: () => Promise.resolve({ type: 'FeatureCollection', features: [] })
+      })
+    );
+
+    render(<MapDisplayComponent data={mockData} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Something went wrong')).toBeTruthy();
+    });
+  });
+
+  it('shows error StatusCard when boundaries fetch rejects (network error)', async () => {
+    fetchMock.mockImplementation(() => Promise.reject(new Error('Network error')));
+
+    render(<MapDisplayComponent data={mockData} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Something went wrong')).toBeTruthy();
+    });
   });
 });
