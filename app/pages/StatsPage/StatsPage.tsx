@@ -9,8 +9,8 @@ import useSWR from 'swr';
 import { PricesStats } from '@/components/PricesStats/PricesStats';
 import { StatusCard } from '@/components/StatusCard/StatusCard';
 import { fetcher } from '@/lib/fetcher';
-import type { CountryPrice } from '@/lib/types';
 import { buildMeta } from '@/lib/seo';
+import type { CountryPrice } from '@/lib/types';
 
 export const meta: MetaFunction = () =>
   buildMeta({

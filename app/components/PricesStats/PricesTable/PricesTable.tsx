@@ -25,7 +25,7 @@ export function PricesTable({ data }: PricesTableProps): React.JSX.Element {
 
   return (
     <>
-      <Typography variant="h5" component="h1" sx={{ mb: theme.spacing(4), textAlign: 'center' }}>
+      <Typography variant="h5" component="h2" sx={{ mb: theme.spacing(4), textAlign: 'center' }}>
         {t('stats.pricesStats.pricesTable.title')}
       </Typography>
       <TableContainer
