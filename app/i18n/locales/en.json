@@ -31,6 +31,7 @@
     "error": "Error loading map",
     "errorTitle": "Something went wrong",
     "gasoline": "Petrol",
+    "h1": "EuroFuels – EU Fuel Prices Map",
     "loading": "Loading...",
     "title": "Map",
     "unit": "€/1000 L"

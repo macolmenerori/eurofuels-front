@@ -20,6 +20,11 @@ import MapPage from './MapPage';
 const ENDPOINT = import.meta.env.VITE_COUNTRY_DATA_ENDPOINT;
 
 describe('MapPage', () => {
+  it('renders a visually-hidden h1 heading', () => {
+    render(<MapPage />);
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+  });
+
   describe('loading state', () => {
     it('shows the loading spinner while the request is in flight', async () => {
       // Override handler with an infinite delay so the request never resolves.
