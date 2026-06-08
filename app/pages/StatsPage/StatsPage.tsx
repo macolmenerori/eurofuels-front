@@ -10,11 +10,14 @@ import { PricesStats } from '@/components/PricesStats/PricesStats';
 import { StatusCard } from '@/components/StatusCard/StatusCard';
 import { fetcher } from '@/lib/fetcher';
 import type { CountryPrice } from '@/lib/types';
+import { buildMeta } from '@/lib/seo';
 
-export const meta: MetaFunction = () => [
-  { title: 'Statistics – EuroFuels' },
-  { name: 'description', content: 'Fuel price statistics and trends across the European Union.' }
-];
+export const meta: MetaFunction = () =>
+  buildMeta({
+    path: '/stats',
+    title: 'Statistics – EuroFuels',
+    description: 'Fuel price statistics and trends across the European Union.'
+  });
 
 export default function StatsPage(): React.JSX.Element {
   const { t } = useTranslation();

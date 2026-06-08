@@ -8,11 +8,14 @@ import Box from '@mui/material/Box';
 import MapDisplayComponent from '@/components/MapDisplayComponent/MapDisplayComponent';
 import { StatusCard } from '@/components/StatusCard/StatusCard';
 import { useMapData } from '@/hooks/useMapData';
+import { buildMeta } from '@/lib/seo';
 
-export const meta: MetaFunction = () => [
-  { title: 'EuroFuels – EU Fuel Prices Map' },
-  { name: 'description', content: 'Real-time fuel prices across 27 EU member states.' }
-];
+export const meta: MetaFunction = () =>
+  buildMeta({
+    path: '/',
+    title: 'EuroFuels – EU Fuel Prices Map',
+    description: 'Real-time fuel prices across 27 EU member states.'
+  });
 
 export default function MapPage(): React.JSX.Element {
   const { t } = useTranslation();
