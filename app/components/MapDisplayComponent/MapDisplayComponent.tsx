@@ -11,6 +11,7 @@ import { buildFillColor, getPriceDomain, mergePrices } from './mapColor';
 import { buildPriceLookup, computeFlip } from './tooltipHelpers';
 
 import { StatusCard } from '@/components/StatusCard/StatusCard';
+import { fetcher } from '@/lib/fetcher';
 import type { CountryPriceWithIso } from '@/lib/types';
 import { useThemeMode } from '@/ui/ThemeModeProvider';
 
@@ -118,10 +119,7 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
       try {
         const [{ default: mapboxgl }, rawGeojson] = await Promise.all([
           import('mapbox-gl'),
-          fetch('/data/eu_boundaries.json').then((r) => {
-            if (!r.ok) throw new Error(`Boundaries fetch failed: ${r.status}`);
-            return r.json() as Promise<FeatureCollection<Geometry, GeoJsonProperties>>;
-          })
+          fetcher<FeatureCollection<Geometry, GeoJsonProperties>>('/data/eu_boundaries.json')
         ]);
 
         if (cancelled || !containerRef.current) return;
