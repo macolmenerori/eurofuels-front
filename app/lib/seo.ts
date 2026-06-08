@@ -1,6 +1,7 @@
 import type { MetaDescriptor } from 'react-router';
 
 export const SITE_URL = 'https://eurofuels.miguelangelcolmenero.es';
+export const SITE_DESCRIPTION = 'Real-time fuel prices across 27 EU member states.';
 
 export function buildMeta({
   path,
@@ -24,4 +25,16 @@ export function buildMeta({
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description }
   ];
+}
+
+export function websiteJsonLd(): MetaDescriptor {
+  return {
+    'script:ld+json': {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'EuroFuels',
+      url: SITE_URL,
+      description: SITE_DESCRIPTION
+    }
+  };
 }
