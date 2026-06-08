@@ -67,4 +67,11 @@ describe('CountryTooltip', () => {
     render(<CountryTooltip {...defaultProps} />);
     expect(screen.getByText('€/1000 L')).toBeTruthy();
   });
+
+  it('has role="tooltip" and aria-atomic="true"', () => {
+    const { container } = render(<CountryTooltip {...defaultProps} />);
+    const tooltip = container.querySelector('[role="tooltip"]');
+    expect(tooltip).toBeTruthy();
+    expect(tooltip?.getAttribute('aria-atomic')).toBe('true');
+  });
 });

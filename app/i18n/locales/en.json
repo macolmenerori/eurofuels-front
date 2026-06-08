@@ -25,6 +25,8 @@
     "message": "This website uses cookies to enhance the user experience. By clicking 'Accept', you consent to the use of cookies. You can decline the use of cookies by clicking 'Decline'."
   },
   "map": {
+    "announce": "{{country}}: petrol {{gasoline}}, diesel {{diesel}}",
+    "ariaLabel": "EU fuel price map. Price data is also available in tabular form on the Statistics page.",
     "diesel": "Diesel",
     "error": "Error loading map",
     "errorTitle": "Something went wrong",

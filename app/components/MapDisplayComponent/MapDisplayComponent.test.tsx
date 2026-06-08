@@ -55,6 +55,19 @@ describe('MapDisplayComponent', () => {
     expect(container.querySelector('div')).toBeTruthy();
   });
 
+  it('map container has role="img" and an aria-label', () => {
+    const { container } = render(<MapDisplayComponent data={mockData} />);
+    const mapDiv = container.querySelector('div[role="img"]');
+    expect(mapDiv).toBeTruthy();
+    expect(mapDiv?.getAttribute('aria-label')).toBeTruthy();
+  });
+
+  it('renders a visually-hidden aria-live region', () => {
+    const { container } = render(<MapDisplayComponent data={mockData} />);
+    const liveRegion = container.querySelector('[aria-live="polite"][aria-atomic="true"]');
+    expect(liveRegion).toBeTruthy();
+  });
+
   it('renders the legend unit text when valid data is supplied', () => {
     render(<MapDisplayComponent data={mockData} />);
     // MapLegend is visible when getPriceDomain returns a non-null domain.

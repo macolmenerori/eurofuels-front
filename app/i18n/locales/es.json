@@ -25,6 +25,8 @@
     "message": "Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al hacer clic en 'Aceptar', das tu consentimiento para el uso de cookies. Puedes rechazar el uso de cookies haciendo clic en 'Rechazar'."
   },
   "map": {
+    "announce": "{{country}}: gasolina {{gasoline}}, diésel {{diesel}}",
+    "ariaLabel": "Mapa de precios de combustible de la UE. Los datos también están disponibles en forma de tabla en la página de Estadísticas.",
     "diesel": "Diésel",
     "error": "Error al cargar el mapa",
     "errorTitle": "Algo salió mal",

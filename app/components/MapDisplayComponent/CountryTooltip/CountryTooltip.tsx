@@ -40,6 +40,8 @@ export default function CountryTooltip({
 
   return (
     <Box
+      role="tooltip"
+      aria-atomic="true"
       sx={{
         position: 'absolute',
         left: x + (flipX ? -GAP : GAP),

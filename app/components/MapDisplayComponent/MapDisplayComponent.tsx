@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import type { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MapboxMap } from 'mapbox-gl';
@@ -12,6 +13,7 @@ import { buildPriceLookup, computeFlip } from './tooltipHelpers';
 
 import { StatusCard } from '@/components/StatusCard/StatusCard';
 import { fetcher } from '@/lib/fetcher';
+import { formatPrice } from '@/lib/format';
 import type { CountryPriceWithIso } from '@/lib/types';
 import { useThemeMode } from '@/ui/ThemeModeProvider';
 
@@ -40,7 +42,7 @@ interface HoverState {
 }
 
 export default function MapDisplayComponent({ data }: MapDisplayComponentProps): React.JSX.Element {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const { mode } = useThemeMode();
 
@@ -266,7 +268,12 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
   }
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div
+      ref={containerRef}
+      role="img"
+      aria-label={t('map.ariaLabel')}
+      style={{ width: '100%', height: '100%', position: 'relative' }}
+    >
       {hoverState !== null && (
         <CountryTooltip
           name={tooltipRow?.country ?? hoverState.name}
@@ -278,6 +285,27 @@ export default function MapDisplayComponent({ data }: MapDisplayComponentProps):
           flipY={hoverState.flipY}
         />
       )}
+      {/* Visually hidden — announced to screen readers when hovered country changes */}
+      <Box
+        aria-live="polite"
+        aria-atomic="true"
+        sx={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden',
+          clip: 'rect(0 0 0 0)',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        {hoverState && tooltipRow
+          ? t('map.announce', {
+              country: tooltipRow.country,
+              gasoline: formatPrice(tooltipRow.gasoline, i18n.language),
+              diesel: formatPrice(tooltipRow.diesel, i18n.language)
+            })
+          : ''}
+      </Box>
       {domain && <MapLegend domain={domain} />}
     </div>
   );
