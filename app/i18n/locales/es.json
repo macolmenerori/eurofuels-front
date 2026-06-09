@@ -43,7 +43,8 @@
     "stats": "Estadísticas"
   },
   "notFound": {
-    "title": "404 – Página no encontrada"
+    "backHome": "Página Principal",
+    "title": "Página no encontrada"
   },
   "stats": {
     "error": "Error al obtener los datos",
