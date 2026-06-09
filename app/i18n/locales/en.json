@@ -43,7 +43,8 @@
     "stats": "Stats"
   },
   "notFound": {
-    "title": "404 – Page Not Found"
+    "backHome": "Main Page",
+    "title": "Page Not Found"
   },
   "stats": {
     "error": "Error fetching data",
