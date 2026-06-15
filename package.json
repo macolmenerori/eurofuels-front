@@ -8,7 +8,7 @@
     "node": ">=24.11.0"
   },
   "type": "module",
-  "packageManager": "pnpm@11.5.2",
+  "packageManager": "pnpm@11.6.0",
   "scripts": {
     "dev": "react-router dev",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
@@ -27,8 +27,8 @@
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@macolmenerori/component-library": "^1.4.0",
-    "@mui/icons-material": "^9.0.1",
-    "@mui/material": "^9.0.1",
+    "@mui/icons-material": "^9.1.1",
+    "@mui/material": "^9.1.1",
     "@react-router/node": "^7.17.0",
     "i18next": "^26.3.1",
     "i18next-browser-languagedetector": "^8.2.1",
