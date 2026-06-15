@@ -32,6 +32,13 @@ export default defineConfig({
 
   resolve: {
     tsconfigPaths: true, // wires @/* alias from tsconfig.json paths (native Vite 8)
+    alias: {
+      // MUI v9.1.0 imports 'react-transition-group/TransitionGroupContext' (bare subpath)
+      // but RTG 4.x has no `exports` field, so Node ESM can't resolve the directory import.
+      // Map it explicitly to the ESM file so vitest can load @mui/material transitions.
+      'react-transition-group/TransitionGroupContext':
+        'react-transition-group/esm/TransitionGroupContext.js'
+    }
   },
 
   define: {
@@ -56,7 +63,7 @@ export default defineConfig({
     // Mirrors ssr.noExternal in vite.config.ts.
     server: {
       deps: {
-        inline: ['@macolmenerori/component-library']
+        inline: ['@macolmenerori/component-library', '@mui/material']
       }
     }
   }

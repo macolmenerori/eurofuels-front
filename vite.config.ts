@@ -16,6 +16,15 @@ export default defineConfig({
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     tsconfigPaths: true,
+    alias: {
+      // MUI v9.1.0 imports 'react-transition-group/TransitionGroupContext' (bare subpath).
+      // RTG 4.x has no `exports` field so Node ESM can't resolve directory imports.
+      // Alias to the explicit ESM file; ssr.noExternal ensures the server build
+      // routes MUI through Vite's resolver where this alias applies.
+      'react-transition-group/TransitionGroupContext':
+        'react-transition-group/esm/TransitionGroupContext.js'
+    }
+
   },
 
   // Build configuration (prod)
@@ -47,6 +56,6 @@ export default defineConfig({
 
   // SSR configuration - handle CSS imports in component library
   ssr: {
-    noExternal: ["@macolmenerori/component-library", "react-cookie-consent"],
+    noExternal: ["@macolmenerori/component-library", "react-cookie-consent", "@mui/material"],
   },
 });
