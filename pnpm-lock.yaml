@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@datadog/browser-rum':
-        specifier: ^7.3.0
-        version: 7.3.0
+        specifier: ^7.4.0
+        version: 7.4.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.17)(react@19.2.7)
@@ -397,22 +397,22 @@ packages:
     resolution: {integrity: sha512-QxULHAm7cNu72w97JUNCBFODFaXpbDg+dP8b/oWFAZ2MTRppA3U00Y2L1HqaS4J6yBqxwa/Y3nMBaxVKbB/NsA==}
     engines: {node: '>=20.19.0'}
 
-  '@datadog/browser-core@7.3.0':
-    resolution: {integrity: sha512-bP6QuYyxdjaKYHwqpvYRihSEXgz/8P1iPr1ZI6OJVeDSJ7Zz/kAqK3dU5O7y6FrP9u99CbFG+rRGDtb4ytyJiw==}
+  '@datadog/browser-core@7.4.0':
+    resolution: {integrity: sha512-SwBlEX53yhLhDnOgBk0q7YhvEAQ+qj2yQiQky5FcQ3BaU/NITqJxPn0Jbt7WAMjBr6UsHJbEIGHNb9t3gQeqxQ==}
 
-  '@datadog/browser-rum-core@7.3.0':
-    resolution: {integrity: sha512-E+lBOxaE7UazwhBA3/i8qc0080MQZgxBmpdQsVxkt/UWmql523U8Hf8u/0D4eIauVCOeB6faBhNJhfa/lsRxVg==}
+  '@datadog/browser-rum-core@7.4.0':
+    resolution: {integrity: sha512-mB23lchR5XbhXzEU+7GS0+X1PJn9BQQleXGrOF5y4XGRTTUClXPfyc2dza82lJnUsvENFGKNNPXiihVEoEfYPQ==}
 
-  '@datadog/browser-rum@7.3.0':
-    resolution: {integrity: sha512-HxJ+wPBP9l4rVYo5/u7Ls1gH4Pf8W0YGSI+euJfbIdU3UngickRNMQ2tiONwZIc6JjdrVJEu1gKMU/iqAiwiWw==}
+  '@datadog/browser-rum@7.4.0':
+    resolution: {integrity: sha512-hihyYswLtij1IF+9jIoMew9ODOmZaejvNuzP4DfTX3iN/KAwGWtbnIPI+dm3X2Vl+/ibVuUU6b83mBeBmZChBg==}
     peerDependencies:
-      '@datadog/browser-logs': 7.3.0
+      '@datadog/browser-logs': 7.4.0
     peerDependenciesMeta:
       '@datadog/browser-logs':
         optional: true
 
-  '@datadog/js-core@0.0.2':
-    resolution: {integrity: sha512-tubNtQXlHiDovBB04M16MWQbUj4j0F7eu6lWMUmFo/+SD5j8adzSGcVxtSNdSR/u++IaghkCpqcAaR3ZAJh2jQ==}
+  '@datadog/js-core@0.0.4':
+    resolution: {integrity: sha512-igckHli6HrqETON4cT79uDY6YtlDPfY2ecymlBfo6ruD65VGNGw3BfhEP2GIej50IE01gxF+iYXQ4nIGzfRsXg==}
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -3444,22 +3444,22 @@ snapshots:
 
   '@csstools/css-tokenizer@4.0.0': {}
 
-  '@datadog/browser-core@7.3.0':
+  '@datadog/browser-core@7.4.0':
     dependencies:
-      '@datadog/js-core': 0.0.2
+      '@datadog/js-core': 0.0.4
 
-  '@datadog/browser-rum-core@7.3.0':
+  '@datadog/browser-rum-core@7.4.0':
     dependencies:
-      '@datadog/browser-core': 7.3.0
-      '@datadog/js-core': 0.0.2
+      '@datadog/browser-core': 7.4.0
+      '@datadog/js-core': 0.0.4
 
-  '@datadog/browser-rum@7.3.0':
+  '@datadog/browser-rum@7.4.0':
     dependencies:
-      '@datadog/browser-core': 7.3.0
-      '@datadog/browser-rum-core': 7.3.0
-      '@datadog/js-core': 0.0.2
+      '@datadog/browser-core': 7.4.0
+      '@datadog/browser-rum-core': 7.4.0
+      '@datadog/js-core': 0.0.4
 
-  '@datadog/js-core@0.0.2': {}
+  '@datadog/js-core@0.0.4': {}
 
   '@emnapi/core@1.11.1':
     dependencies:

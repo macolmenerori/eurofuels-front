@@ -21,7 +21,7 @@
     "release": "npx tsx scripts/release.ts"
   },
   "dependencies": {
-    "@datadog/browser-rum": "^7.3.0",
+    "@datadog/browser-rum": "^7.4.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
