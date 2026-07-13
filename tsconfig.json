@@ -15,6 +15,7 @@
     "noUncheckedSideEffectImports": true,
     "outDir": "./dist/",
     "resolveJsonModule": true,
+    "rootDirs": [".", "./.react-router/types"],
     "skipLibCheck": true,
     "sourceMap": false,
     "strictNullChecks": true,
