@@ -42,7 +42,7 @@
     "swr": "^2.4.2"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "^5.10.0",
+    "@eslint-react/eslint-plugin": "^5.10.4",
     "@eslint/js": "^10.0.1",
     "@react-router/dev": "^7.17.0",
     "@testing-library/jest-dom": "^6.9.1",
