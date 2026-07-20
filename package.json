@@ -24,7 +24,7 @@
     "@datadog/browser-rum": "^7.4.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@fontsource-variable/manrope": "^5.2.8",
     "@macolmenerori/component-library": "^1.4.0",
     "@mui/icons-material": "^9.2.0",
