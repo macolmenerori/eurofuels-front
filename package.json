@@ -60,7 +60,7 @@
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "jsdom": "^29.1.1",
     "msw": "^2.15.0",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3",
