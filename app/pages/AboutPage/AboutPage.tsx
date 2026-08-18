@@ -9,7 +9,7 @@ import { buildMeta } from '@/lib/seo';
 
 const BACKEND_REPO_URL = 'https://github.com/macolmenerori/eurofuels-back';
 const FRONTEND_REPO_URL = 'https://github.com/macolmenerori/eurofuels-front';
-const AUTHOR_URL = 'https://miguelangelcolmenero.es';
+const AUTHOR_URL = 'https://miguelcolmenero.net';
 
 export const meta: MetaFunction = () =>
   buildMeta({

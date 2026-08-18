@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const SITE_URL = 'https://eurofuels.miguelangelcolmenero.es';
+const SITE_URL = 'https://eurofuels.miguelcolmenero.net';
 
 const routes = [
   { path: '/', priority: 1.0, changefreq: 'daily' },

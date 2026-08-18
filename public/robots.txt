@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eurofuels.miguelangelcolmenero.es/sitemap.xml
+Sitemap: https://eurofuels.miguelcolmenero.net/sitemap.xml

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://eurofuels.miguelangelcolmenero.es/</loc>
+    <loc>https://eurofuels.miguelcolmenero.net/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
-    <loc>https://eurofuels.miguelangelcolmenero.es/stats</loc>
+    <loc>https://eurofuels.miguelcolmenero.net/stats</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eurofuels.miguelangelcolmenero.es/about</loc>
+    <loc>https://eurofuels.miguelcolmenero.net/about</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
