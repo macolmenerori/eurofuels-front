@@ -1,6 +1,6 @@
 import type { MetaDescriptor } from 'react-router';
 
-export const SITE_URL = 'https://eurofuels.miguelangelcolmenero.es';
+export const SITE_URL = 'https://eurofuels.miguelcolmenero.net';
 export const SITE_DESCRIPTION = 'Real-time fuel prices across 27 EU member states.';
 
 export function buildMeta({
