@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@datadog/browser-rum':
-        specifier: ^7.12.0
-        version: 7.12.0
+        specifier: ^7.14.0
+        version: 7.14.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0)
@@ -332,22 +332,22 @@ packages:
     resolution: {integrity: sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw==}
     engines: {node: '>=20.19.0'}
 
-  '@datadog/browser-core@7.12.0':
-    resolution: {integrity: sha512-yDDY9Wt2hPNNOsifj4qveABxorPy0ipliAaf+SxOwvT2zYR1WVjYu5sw3Gv55wYAGI4AHG/xam3U29mbbOhuUQ==}
+  '@datadog/browser-core@7.14.0':
+    resolution: {integrity: sha512-9Nuu2swva6Of+uvQLw1700taX2ix/20enKQUo9zEQlVPvWyj2/N055d160WLiwR0oveuYt2kaZQWFomvmiWyvg==}
 
-  '@datadog/browser-rum-core@7.12.0':
-    resolution: {integrity: sha512-29R17OrMReJoXdfomGiY1AXNggczlzcuhtq/W4n6FTP4o4DLss6Ivuci7uZ5hU4HR9UmvFql2UvjWr2nJwJ3Lg==}
+  '@datadog/browser-rum-core@7.14.0':
+    resolution: {integrity: sha512-4bO4uLc4/+TT7sBHv8i9csyoDvU3sqE/zJ3jwaQi8JfRtJs9UQkFaq/DXVKoPnYSJoMAmDt8H/fSr76r5YV3/Q==}
 
-  '@datadog/browser-rum@7.12.0':
-    resolution: {integrity: sha512-nf25qk8+JYugexX/vILLacRc+p6nHsKKNaEkChNO9fNsQEcqRikpq8DEU2QjDYRR3nSr6qmdEuhMphsaqsX86w==}
+  '@datadog/browser-rum@7.14.0':
+    resolution: {integrity: sha512-QxdqN2tdkSFKDSSEdIltuYXLCWsUVz7k+4kU56qBIcaNQw5Dh4/KtfmfAHJRaj2F+6+BAhii72/kiD16wASxAQ==}
     peerDependencies:
-      '@datadog/browser-logs': 7.12.0
+      '@datadog/browser-logs': 7.14.0
     peerDependenciesMeta:
       '@datadog/browser-logs':
         optional: true
 
-  '@datadog/js-core@0.0.13':
-    resolution: {integrity: sha512-6+2H/3DM1KETvndFhY9+o6cvvCezD2TgIJ3xJNPZ6cmXx4C+zP3Qt4rwGGVNjnwFhhHRn35QSs5DDXlzpMElJw==}
+  '@datadog/js-core@0.0.15':
+    resolution: {integrity: sha512-1EPXrwFXkBxsi/9XIp56kzgRkW1wbG8r33mdQndUJd3IiCjHhAWDc1D4ocYAcBlUqXicwO4g354OdE7Lb0nEMA==}
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -3183,22 +3183,22 @@ snapshots:
 
   '@csstools/css-tokenizer@4.0.2': {}
 
-  '@datadog/browser-core@7.12.0':
+  '@datadog/browser-core@7.14.0':
     dependencies:
-      '@datadog/js-core': 0.0.13
+      '@datadog/js-core': 0.0.15
 
-  '@datadog/browser-rum-core@7.12.0':
+  '@datadog/browser-rum-core@7.14.0':
     dependencies:
-      '@datadog/browser-core': 7.12.0
-      '@datadog/js-core': 0.0.13
+      '@datadog/browser-core': 7.14.0
+      '@datadog/js-core': 0.0.15
 
-  '@datadog/browser-rum@7.12.0':
+  '@datadog/browser-rum@7.14.0':
     dependencies:
-      '@datadog/browser-core': 7.12.0
-      '@datadog/browser-rum-core': 7.12.0
-      '@datadog/js-core': 0.0.13
+      '@datadog/browser-core': 7.14.0
+      '@datadog/browser-rum-core': 7.14.0
+      '@datadog/js-core': 0.0.15
 
-  '@datadog/js-core@0.0.13': {}
+  '@datadog/js-core@0.0.15': {}
 
   '@emnapi/core@1.11.1':
     dependencies:
