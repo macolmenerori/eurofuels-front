@@ -171,8 +171,8 @@ importers:
   .:
     dependencies:
       '@datadog/browser-rum':
-        specifier: ^7.14.0
-        version: 7.14.0
+        specifier: ^7.15.0
+        version: 7.15.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0)
@@ -490,22 +490,22 @@ packages:
     resolution: {integrity: sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw==}
     engines: {node: '>=20.19.0'}
 
-  '@datadog/browser-core@7.14.0':
-    resolution: {integrity: sha512-9Nuu2swva6Of+uvQLw1700taX2ix/20enKQUo9zEQlVPvWyj2/N055d160WLiwR0oveuYt2kaZQWFomvmiWyvg==}
+  '@datadog/browser-core@7.15.0':
+    resolution: {integrity: sha512-htDnhCpWiP/dKItxi0unTp7j7m9X1+Bxh1PjLY3gTn6U+oWa1wo42UqnPt5Vmje5wHMmmuuNRxnr9zXH61xyag==}
 
-  '@datadog/browser-rum-core@7.14.0':
-    resolution: {integrity: sha512-4bO4uLc4/+TT7sBHv8i9csyoDvU3sqE/zJ3jwaQi8JfRtJs9UQkFaq/DXVKoPnYSJoMAmDt8H/fSr76r5YV3/Q==}
+  '@datadog/browser-rum-core@7.15.0':
+    resolution: {integrity: sha512-ReTr9t5Nx6ZCPlyN2f+weh6wzd9bi+l0+NKka0uswV8vC0/AnyAaKANW+49763LxBMtn4L+jrKHc5DfvXHiZAA==}
 
-  '@datadog/browser-rum@7.14.0':
-    resolution: {integrity: sha512-QxdqN2tdkSFKDSSEdIltuYXLCWsUVz7k+4kU56qBIcaNQw5Dh4/KtfmfAHJRaj2F+6+BAhii72/kiD16wASxAQ==}
+  '@datadog/browser-rum@7.15.0':
+    resolution: {integrity: sha512-pnyu2fbEKOcTLhJvggHOKKOquXQaYpnY4AWiZArQ4ygsSKEbUG9QVSIl/dgZwzJ6VF0zWxt88SrSVhbxH3LWZg==}
     peerDependencies:
-      '@datadog/browser-logs': 7.14.0
+      '@datadog/browser-logs': 7.15.0
     peerDependenciesMeta:
       '@datadog/browser-logs':
         optional: true
 
-  '@datadog/js-core@0.0.15':
-    resolution: {integrity: sha512-1EPXrwFXkBxsi/9XIp56kzgRkW1wbG8r33mdQndUJd3IiCjHhAWDc1D4ocYAcBlUqXicwO4g354OdE7Lb0nEMA==}
+  '@datadog/js-core@0.0.16':
+    resolution: {integrity: sha512-JHDE2CrVWz3kpS2SwZij4/NjFB1vvYtG4qtQTmnXVtVKabgQoane1XqRc4FiITYsZkrGdABfETTJJVEPW0xVpQ==}
 
   '@emotion/babel-plugin@11.13.5':
     resolution: {integrity: sha512-pxHCpT2ex+0q+HH91/zsdHkw/lXd468DIN2zvfvLtPKLLMo6gQj7oLObq8PhkrxOZb/gGCq03S3Z7PDhS8pduQ==}
@@ -3359,22 +3359,22 @@ snapshots:
 
   '@csstools/css-tokenizer@4.0.2': {}
 
-  '@datadog/browser-core@7.14.0':
+  '@datadog/browser-core@7.15.0':
     dependencies:
-      '@datadog/js-core': 0.0.15
+      '@datadog/js-core': 0.0.16
 
-  '@datadog/browser-rum-core@7.14.0':
+  '@datadog/browser-rum-core@7.15.0':
     dependencies:
-      '@datadog/browser-core': 7.14.0
-      '@datadog/js-core': 0.0.15
+      '@datadog/browser-core': 7.15.0
+      '@datadog/js-core': 0.0.16
 
-  '@datadog/browser-rum@7.14.0':
+  '@datadog/browser-rum@7.15.0':
     dependencies:
-      '@datadog/browser-core': 7.14.0
-      '@datadog/browser-rum-core': 7.14.0
-      '@datadog/js-core': 0.0.15
+      '@datadog/browser-core': 7.15.0
+      '@datadog/browser-rum-core': 7.15.0
+      '@datadog/js-core': 0.0.16
 
-  '@datadog/js-core@0.0.15': {}
+  '@datadog/js-core@0.0.16': {}
 
   '@emotion/babel-plugin@11.13.5(supports-color@7.2.0)':
     dependencies:
