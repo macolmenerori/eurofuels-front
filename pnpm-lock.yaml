@@ -198,8 +198,8 @@ importers:
         specifier: ^26.5.10
         version: 26.5.10(typescript@6.0.3)
       i18next-browser-languagedetector:
-        specifier: ^8.2.2
-        version: 8.2.2
+        specifier: ^8.2.4
+        version: 8.2.4
       isbot:
         specifier: ^5.2.2
         version: 5.2.2
@@ -2097,8 +2097,8 @@ packages:
   html-parse-stringify@4.0.1:
     resolution: {integrity: sha512-0zHsZJrK7S3K2aucXWL6ycoYJ/iNtIcFHC/nYQgFklPtrv5LpJctIiSCroWZWeuoXvuyFdzp6KzjJQ+OT5MfFw==}
 
-  i18next-browser-languagedetector@8.2.2:
-    resolution: {integrity: sha512-99PKPDVeLj7s4nDJAz+z664/6IWEb2EyssTsknyzc1MY+mmtAXpx3BP862MrKLGRtmSJnlUioPuOE22F+RR+ng==}
+  i18next-browser-languagedetector@8.2.4:
+    resolution: {integrity: sha512-n6zWTCD8plrPN6gotXNXf0qdM2cORZqZ6ypJA4aIXZkEa45Ds2BVlrZfFItD+XQWP3yAgWxV+euldyN+2utk0Q==}
 
   i18next@26.5.10:
     resolution: {integrity: sha512-YS4EiLQhhk0wGThm4Zy+BL2c9rBNIK+kAbksi4l/B+D6kVRQLIFZgu2b/MU2LibJJHwWNTYoOYR52T+jfV8kPQ==}
@@ -5059,7 +5059,7 @@ snapshots:
 
   html-parse-stringify@4.0.1: {}
 
-  i18next-browser-languagedetector@8.2.2:
+  i18next-browser-languagedetector@8.2.4:
     dependencies:
       '@babel/runtime': 7.29.7
 
