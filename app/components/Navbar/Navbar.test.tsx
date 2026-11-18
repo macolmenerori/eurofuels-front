@@ -66,16 +66,26 @@ describe('Navbar', () => {
 
   // ─── Mobile menu ─────────────────────────────────────────────────────────────
 
+  // jsdom >=31 evaluates @media rules against a fixed 1024px viewport, so the
+  // mobile-only hamburger (display: { xs: 'flex', sm: 'none' }) is display:none.
+  // Query it with hidden: true; the menu itself renders in a portal and stays accessible.
+  const getHamburger = () => screen.getByRole('button', { name: /open menu/i, hidden: true });
+
   it('renders the hamburger button with accessible label', () => {
     render(<Navbar />);
-    expect(screen.getByRole('button', { name: /open menu/i })).toBeInTheDocument();
+    expect(getHamburger()).toBeInTheDocument();
+  });
+
+  it('hides the hamburger at desktop width', () => {
+    render(<Navbar />);
+    expect(screen.queryByRole('button', { name: /open menu/i })).not.toBeInTheDocument();
   });
 
   it('opens the mobile menu on hamburger click and shows nav links + lang rows + theme switch', async () => {
     const user = userEvent.setup();
     render(<Navbar />);
 
-    const hamburger = screen.getByRole('button', { name: /open menu/i });
+    const hamburger = getHamburger();
     await user.click(hamburger);
 
     // Nav link rows appear in the dropdown as menuitems
@@ -99,7 +109,7 @@ describe('Navbar', () => {
     const user = userEvent.setup();
     render(<Navbar />);
 
-    await user.click(screen.getByRole('button', { name: /open menu/i }));
+    await user.click(getHamburger());
     await waitFor(() => {
       expect(screen.getByRole('menu')).toBeInTheDocument();
     });
@@ -117,7 +127,7 @@ describe('Navbar', () => {
     const user = userEvent.setup();
     render(<Navbar />);
 
-    await user.click(screen.getByRole('button', { name: /open menu/i }));
+    await user.click(getHamburger());
     await waitFor(() => screen.getByRole('menu'));
 
     const esRow = screen.getByRole('menuitem', { name: /^es$/i });

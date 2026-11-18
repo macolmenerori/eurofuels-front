@@ -8,7 +8,7 @@
     "node": ">=24.11.0"
   },
   "type": "module",
-  "packageManager": "pnpm@12.9.0",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "dev": "react-router dev",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
@@ -58,7 +58,7 @@
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-simple-import-sort": "^14.0.0",
-    "jsdom": "^30.1.3",
+    "jsdom": "^31.0.1",
     "msw": "^3.0.6",
     "prettier": "^3.10.1",
     "ts-node": "^10.9.2",
