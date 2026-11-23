@@ -180,8 +180,8 @@ importers:
   .:
     dependencies:
       '@datadog/browser-rum':
-        specifier: ^7.17.0
-        version: 7.17.0
+        specifier: ^7.18.0
+        version: 7.18.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
@@ -433,22 +433,22 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@datadog/browser-core@7.17.0':
-    resolution: {integrity: sha512-GGnXQaYAnQOeFg9lXekTg+0pwdBNAnUautRFxo6HyBgWWCge3lmQxzFPFU3b8+mOUCETlOMOitTf+/JRnPrciA==}
+  '@datadog/browser-core@7.18.0':
+    resolution: {integrity: sha512-cNJSv9nyh+4BsR2Qud7nlPOBhirBU3UAEXTZuFM1if452AA0AHnsU8LGQovh8iUUNdXXUlpvptw5BPsFwfSqwQ==}
 
-  '@datadog/browser-rum-core@7.17.0':
-    resolution: {integrity: sha512-s+OmAuWp5u4+BoHD/wg7zdtO3FGM6LXdO3766X9Q/rH04GcFDP0XKnjd+DOD1HREWFrIvg2GTYYvZ5Hmy0j/Aw==}
+  '@datadog/browser-rum-core@7.18.0':
+    resolution: {integrity: sha512-O/zC+54Z4UZOkVb7ExQ3aL+G96RTDBQLDeYgi8v+jGLn9/6fBhfutCFEeQsNecwZp4nb4NY9UMlaESJd2sSvHw==}
 
-  '@datadog/browser-rum@7.17.0':
-    resolution: {integrity: sha512-iupU8gr/5W6i1K3aNp++tYuJSegxrAeiujbEeUKHQjfsSCVLjFINalNNTuS5e5kUQFbyR8cT8AbEI+gHGMRkyg==}
+  '@datadog/browser-rum@7.18.0':
+    resolution: {integrity: sha512-hBLBoQI/qfuhzIEg1+Lk458HUCQ04Uk/Ii7cG8ybZNrOsBGsFHl8gIB9SrAaVXaXFXsFhdpiQaf1Aezxqrku5g==}
     peerDependencies:
-      '@datadog/browser-logs': 7.17.0
+      '@datadog/browser-logs': 7.18.0
     peerDependenciesMeta:
       '@datadog/browser-logs':
         optional: true
 
-  '@datadog/js-core@0.0.20':
-    resolution: {integrity: sha512-rg0Z/dddE399y1u82Q0klcnNfsJpW9mYlr0G4+nlNuLshwkwYMM4l3/GfW4py57uTKAOZjZgW2I/JxQSGuyD+w==}
+  '@datadog/js-core@0.0.22':
+    resolution: {integrity: sha512-N22UfUsHFk9vmWIWESdd4bq2HyfkNoHjppPpnUTsBZI0ivR6+rYpPn51KR/nR5q1Y4CWJNS549W4PUiPFztH1Q==}
 
   '@dual-bundle/import-meta-resolve@4.2.1':
     resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
@@ -3273,22 +3273,22 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@datadog/browser-core@7.17.0':
+  '@datadog/browser-core@7.18.0':
     dependencies:
-      '@datadog/js-core': 0.0.20
+      '@datadog/js-core': 0.0.22
 
-  '@datadog/browser-rum-core@7.17.0':
+  '@datadog/browser-rum-core@7.18.0':
     dependencies:
-      '@datadog/browser-core': 7.17.0
-      '@datadog/js-core': 0.0.20
+      '@datadog/browser-core': 7.18.0
+      '@datadog/js-core': 0.0.22
 
-  '@datadog/browser-rum@7.17.0':
+  '@datadog/browser-rum@7.18.0':
     dependencies:
-      '@datadog/browser-core': 7.17.0
-      '@datadog/browser-rum-core': 7.17.0
-      '@datadog/js-core': 0.0.20
+      '@datadog/browser-core': 7.18.0
+      '@datadog/browser-rum-core': 7.18.0
+      '@datadog/js-core': 0.0.22
 
-  '@datadog/js-core@0.0.20': {}
+  '@datadog/js-core@0.0.22': {}
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
