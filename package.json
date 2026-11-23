@@ -30,7 +30,7 @@
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
     "i18next": "^27.1.2",
-    "i18next-browser-languagedetector": "^8.3.0",
+    "i18next-browser-languagedetector": "^8.3.1",
     "isbot": "^5.2.3",
     "mapbox-gl": "^3.34.2",
     "react": "^19.3.1",
